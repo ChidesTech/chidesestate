@@ -2,7 +2,10 @@
 
 # dependencies
 /node_modules
-/public
+/public/images
+/public/js
+/public/fonts
+
 /.pnp
 .pnp.js
 
