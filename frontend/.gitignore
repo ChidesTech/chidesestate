@@ -2,7 +2,14 @@
 
 # dependencies
 /node_modules
-/public/images
+/public/images/agency
+/public/images/agent
+/public/images/avatar
+/public/images/blog
+/public/images/client
+/public/images/error
+/public/images/gallery
+/public/images/location
 
 /.pnp
 .pnp.js
