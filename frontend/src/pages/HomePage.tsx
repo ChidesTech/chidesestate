@@ -7,7 +7,7 @@ export default function HomePage() {
 
     const [properties, setProperties] = useState<Array<IPropertyInterface>>([]);
     const [loading, setLoading] = useState(true);
-    
+
 
 
     async function getMyProperties() {
@@ -26,221 +26,172 @@ export default function HomePage() {
         getMyProperties();
     }, [])
     return <>
+        {/* BANNER STARTS */}
 
-        {/* <!--PROPERTY SLIDER BEGIN--> */}
-        <div className="property-slider">
-            <div className="owl-carousel owl-theme">
-                <div className="item">
-                    <div className="slide">
-                        <img  src="images/property_slider_first_slide.png" />
-                       
-                    </div>
-                </div>
-                <div className="item">
-                    <div className="slide">
-                        <img  src="images/ecom2.jpg" />
-                        
-                    </div>
-                </div>
-            </div>
-            <a href="#" className="nav-arrow left-arrow"><i className="fa fa-arrow-left" aria-hidden="true"></i></a>
-            <a href="#" className="nav-arrow right-arrow"><i className="fa fa-arrow-right" aria-hidden="true"></i></a>
-        </div>
-        {/* <!--PROPERTY SLIDER ENDS--> */}
-        <SearchForm/>
-        <div className="counters-wrapper light-counters">
-            {/* <!--COUNTERS BLOCK BEGIN--> */}
+        <section className="banner bg-holder bg-overlay-black-30" style={{ backgroundImage: "url(images/banner-01.jpg)" }}>
             <div className="container">
                 <div className="row">
-                    <div className="col-md-3 col-sm-6 counter-element">
-                        <div className="i">
-                            <i className="material-icons">location_city</i>
-                        </div>
-                        <div className="data">
-                            <p className="number" data-number="428">0</p>
-                            <span>New properties for last 7 days</span>
+                    <div className="col-12 position-relative">
+                        <h1 className="text-white text-center mb-2">Create lasting wealth through Real Villa</h1>
+                        <p className="lead text-center text-white mb-4 fw-normal">Take a step to realizing your dream. #TimeToMove</p>
+                        <SearchForm/>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {/* BANNER ENDS */}
+
+
+        {/* FEATURES STARTS */}
+
+        <section className="space-ptb bg-holder-bottom building-space" style={{ backgroundImage: "url(images/building-bg.png)" }}>
+            <div className="container">
+                <div className="row align-items-center">
+                    <div className="col-lg-9">
+                        <div className="section-title mb-0">
+                            <h2>Plenty of reasons to choose us</h2>
+                            <p>Our agency has many specialized areas, but our CUSTOMERS are our real specialty.</p>
                         </div>
                     </div>
-                    <div className="col-md-3  col-sm-6 counter-element">
-                        <div className="i">
-                            <i className="material-icons">graphic_eq</i>
-                        </div>
-                        <div className="data">
-                            <p className="number" data-number="73.4">0</p>
-                            <span>Off available ads in all categories</span>
+                    <div className="col-lg-3 text-lg-end">
+                        <a className="btn btn-primary" href="about-us.html">More about us </a>
+                    </div>
+                </div>
+                <div className="row g-0 mt-4">
+                    <div className="col-lg-3 col-sm-6">
+                        <div className="feature-info h-100">
+                            <div className="feature-info-icon">
+                                <i className="flaticon-like"></i>
+                            </div>
+                            <div className="feature-info-content">
+                                <h6 className="mb-3 feature-info-title">Excellent reputation</h6>
+                                <p className="mb-0">Our comprehensive database of listings and market info give the most accurate view of the market and your home value.</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="col-md-3 col-sm-6 counter-element">
-                        <div className="i">
-                            <i className="material-icons">face</i>
-                        </div>
-                        <div className="data">
-                            <p className="number" data-number="947">947</p>
-                            <span>Active agents visiting the site every day</span>
+                    <div className="col-lg-3 col-sm-6">
+                        <div className="feature-info h-100">
+                            <div className="feature-info-icon">
+                                <i className="flaticon-agent"></i>
+                            </div>
+                            <div className="feature-info-content">
+                                <h6 className="mb-3 feature-info-title">Best local agents</h6>
+                                <p className="mb-0">You are just minutes from joining with the best agents who are fired up about helping you Buy or sell.</p>
+                            </div>
                         </div>
                     </div>
-                    <div className="col-md-3 col-sm-6 counter-element">
-                        <div className="i">
-                            <i className="material-icons">event_seat</i>
+                    <div className="col-lg-3 col-sm-6">
+                        <div className="feature-info h-100">
+                            <div className="feature-info-icon">
+                                <i className="flaticon-like-1"></i>
+                            </div>
+                            <div className="feature-info-content">
+                                <h6 className="mb-3 feature-info-title">Peace of mind</h6>
+                                <p className="mb-0">Rest guaranteed that your agent and their expert team are handling every detail of your transaction from start to end.</p>
+                            </div>
                         </div>
-                        <div className="data">
-                            <p className="number" data-number="848">848</p>
-                            <span>Visitors every day</span>
+                    </div>
+                    <div className="col-lg-3 col-sm-6">
+                        <div className="feature-info h-100">
+                            <div className="feature-info-icon">
+                                <i className="flaticon-house-1"></i>
+                            </div>
+                            <div className="feature-info-content">
+                                <h6 className="mb-3 feature-info-title">Tons of options</h6>
+                                <p className="mb-0">Discover a place you’ll love to live in. Choose from our vast inventory and choose your desired house.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="row justify-content-center mt-5">
+                    <div className="col-lg-7 text-center">
+                        <p className="mb-4">Ten years and thousands of home buyers have turned to Real Villa to find their dream home. We offer a comprehensive list of for-sale properties, as well as the knowledge and tools to make informed real estate decisions. Today, more than ever, Real Villa is the home of home Search.</p>
+                        <div className="popup-video">
+                            <a className="popup-icon popup-youtube" href="https://www.youtube.com/watch?v=LgvseYYhqU0"> <i className="flaticon-play-button"></i> </a>
                         </div>
                     </div>
                 </div>
             </div>
-            {/* <!--COUNTERS BLOCK END--> */}
-        </div>
+        </section>
+        {/* FEATURES ENDS */}
 
-    {loading ? <h1 className="container">Fetching Properties ...</h1> :
-    properties.length === 0 ? <h1 className="container">No Property Added</h1> : null}
-       
-        <div className={`${loading || properties.length === 0 ? "container hide-container" : "container"}`}>
 
-        {/* <!--APARTMENT GRID BEGIN--> */}
-        <div className="apartment-grid">
-            <div className="owl-carousel owl-theme">
-                <div className="item">
-                    <div className="row">
+        {/* PROPERTY LIST STARTS */}
 
-                        {
-                            properties.map(property =>{
-                                return  <a href={`/property/${property._id}`} key={property._id} className="col-md-4 col-sm-6 col-xs-12">
-                                <div className="property-block">
-                                    <p className="property-type">Farm</p>
-                                    <p className="property-title">{property.title}</p>
-                                    <div className="apartment-address">
-                                        <i className="material-icons">place</i>
-                                        <span className="address">{property.location}</span>
-                                    </div>
-    
-                                    <div className="apartment-image">
-                                        <img src={property.cover || "images/image.png"} alt="image" />
-                                        <div className="badges">
-                                            {/* <p className="featured">Featured</p> */}
-                                            <p className="rent">{property.status}</p>
-                                            {/* <p className="sale">For Sale</p> */}
-                                        </div>
-    
-                                    </div>
-    
-                                    <div className="apartment-values">
-                                        <span>Beds: {property.bedrooms}</span>
-                                        <span>Bath: {property.bathrooms} </span>
-                                        <span>Sq Ft: </span>
-                                    </div>
-                                    <div className="apartment-info">
-                                        <div className="apartment-price">
-                                            <p className="price-big">&#163;{property.price}{property.period && `/${property.period}`}</p>
-                                            {/* <p className="price-small">&#163;1,800/sq ft</p> */}
-                                        </div>
-                                        {/* <div className="icons">
-                                            <a href="#" className="clone"> <i className="material-icons icons-style"></i></a>
-                                            <a href="#" className="heart"><i className="material-icons icons-style"></i></a>
-                                        </div> */}
-                                    </div>
-                                    <div className="apartment-manager">
-                                        {/* <div className="manager-wrap">
-                                            <div className="manager-icon">
-                                                <a href="#chat"> <img src="images/userpic.png" alt="userpic" /></a>
-                                                <div className="online-status"></div>
-                                            </div>
-                                            <span className="manager-name">Eleanor French</span>
-                                        </div> */}
-                                        <div className="calendar">
-                                            <i className="material-icons">insert_invitation</i>
-                                            <span> 1 days a go</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-    
-    
-                            })
-                        }
-                       
-
+        <section className="space-pb">
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-lg-8">
+                        <div className="section-title text-center">
+                            <h2>Newly listed properties</h2>
+                            <p>Find your dream home from our Newly added properties</p>
+                        </div>
                     </div>
                 </div>
 
-                {/* <div className="item">
-                    <div className="row">
-                        <div className="col-md-4 col-sm-6 col-xs-12">
-                            <div className="property-block">
-                                <p className="property-type">Farm</p>
-                                <p className="property-title">Luxury Apartment ocean view</p>
-                                <div className="apartment-address">
-                                    <i className="material-icons">place</i>
-                                    <span className="address">153 Adriana Mews Suite 247</span>
-                                </div>
+                <div className="row">
+                    {loading ? <div>Fetching Properties</div> : properties.length === 0 ? <div>No Property Found</div> :
+                        properties.map(property => {
+                            return <div key={property._id} className="col-sm-6 col-md-4">
+                                <div className="property-item">
+                                    <div className="property-image bg-overlay-gradient-04">
+                                        <Link to={`/property/${property._id}`}>
+                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "images/property/grid/06.jpg"} alt="" />
 
-                                <div className="apartment-image">
-                                    <img src="images/image.png" alt="image" />
-                                    <div className="badges">
-                                        <p className="featured">Featured</p>
-                                        <p className="rent">For Rent</p>
-                                        <p className="sale">For Sale</p>
-                                    </div>
-
-                                </div>
-
-                                <div className="apartment-values">
-                                    <span>Beds: 4</span>
-                                    <span>Bath: 4 </span>
-                                    <span>Sq Ft: 2100</span>
-                                </div>
-                                <div className="apartment-info">
-                                    <div className="apartment-price">
-                                        <p className="price-big">&#163;1.245.000</p>
-                                        <p className="price-small">&#163;1,800/sq ft</p>
-                                    </div>
-                                    <div className="icons">
-                                        <a href="#" className="clone"> <i className="material-icons icons-style"></i></a>
-                                        <a href="#" className="heart"><i className="material-icons icons-style"></i></a>
-                                    </div>
-                                </div>
-                                <div className="apartment-manager">
-                                    <div className="manager-wrap">
-                                        <div className="manager-icon">
-                                            <a href="#chat"> <img src="images/userpic.png" alt="userpic" /></a>
-                                            <div className="online-status"></div>
+                                        </Link>
+                                        <div className="property-lable">
+                                            <span className="badge badge-md bg-primary">{property.type}</span>
+                                            {property.status && <span className="badge badge-md bg-info text-uppercase">{property.status} </span>}
                                         </div>
-                                        <span className="manager-name">Eleanor French</span>
+                                        <div className="property-agent">
+                                            <div className="property-agent-image">
+                                                <img className="img-fluid" src="images/avatar/06.jpg" alt="" />
+                                            </div>
+                                            <div className="property-agent-info">
+                                                <a className="property-agent-name" href="#">Michael Bean</a>
+                                                <span className="d-block">Research</span>
+                                                <ul className="property-agent-contact list-unstyled">
+                                                    <li><a href="#"><i className="fas fa-mobile-alt"></i> </a></li>
+                                                    <li><a href="#"><i className="fas fa-envelope"></i> </a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="property-agent-popup">
+                                            <a href="#"><i className="fas fa-camera"></i> 02</a>
+                                        </div>
                                     </div>
-                                    <div className="calendar">
-                                        <i className="material-icons">insert_invitation</i>
-                                        <span> 3 days a go</span>
+                                    <div className="property-details">
+                                        <div className="property-details-inner">
+                                            <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
+                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                            <span className="property-agent-date"><i className="far fa-clock fa-md"></i>3 years ago</span>
+                                            <div className="property-price">${property.price}{property.period && <span> / {property.period}</span>} </div>
+                                            <ul className="property-info list-unstyled d-flex">
+                                                <li className="flex-fill property-bed"><i className="fas fa-bed"></i>Bed<span>{property.bedrooms}</span></li>
+                                                <li className="flex-fill property-bath"><i className="fas fa-bath"></i>Bath<span>{property.bathrooms}</span></li>
+                                                <li className="flex-fill property-m-sqft"><i className="far fa-square"></i>sqft<span>3,657m</span></li>
+                                            </ul>
+                                        </div>
+                                        <div className="property-btn">
+                                            <a className="property-link" href="property-detail-style-01.html">See Details</a>
+                                            <ul className="property-listing-actions list-unstyled mb-0">
+                                                <li className="property-compare"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i className="fas fa-exchange-alt"></i></a></li>
+                                                <li className="property-favourites"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Favourite" href="#"><i className="far fa-heart"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
+                        })
+                    }
+                    <div className="col-12 text-center">
+                        <Link className="btn btn-link" to="/listings"><i className="fas fa-plus"></i>View All Listings</Link>
                     </div>
-                </div> */}
+                </div>
             </div>
-            {/* <!-- class hidebutton hide button-wrapper block, class hidespan hide span-wrapper --> */}
-            {/* <div className="arrow-block hidespan">
+        </section>
+        {/* PROPERTY LIST ENDS */}
 
-                <div className="arrow-wrapper">
-                    <a href="#" className="arrow-prev">
-                        <i className="material-icons">arrow_back</i>
-                    </a>
-                    <a href="#" className="arrow-next">
-                        <i className="material-icons">arrow_forward</i>
-                    </a>
-                </div>
-                <div className="span-wrapper">
-                    <span>Partners</span>
-                </div>
-                <div className="button-wrapper">
-                    <a href="#">button</a>
-                </div>
-            </div> */}
-        </div>
-        {/* <!--APARTMENT GRID END--> */}
-    </div>
-       
-    
+
     </>
 }

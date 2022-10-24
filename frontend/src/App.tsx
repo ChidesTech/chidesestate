@@ -6,12 +6,13 @@ import './index.css';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import MyPropertiesPage from './pages/MyPropertiesPage';
+import PropertiesManagementPage from './pages/PropertiesManagementPage';
 import RegisterPage from './pages/RegisterPage';
 import SubmitProperty from './pages/SubmitProperty';
 import SinglePropertyPage from './pages/SinglePropertyPage';
 import DashboardPage from './pages/DashboardPage';
 import ListingsPage from './pages/ListingsPage';
+import EstatesManagementPage from './pages/EstatesManagementPage';
 function App() {
   return (
     <BrowserRouter>
@@ -21,10 +22,12 @@ function App() {
     <Route path='/login' element={<LoginPage/>}></Route>
     <Route path='/register' element={<RegisterPage/>}></Route>
     <Route path='/submit-property' element={<SubmitProperty/>}></Route>
-    <Route path='/my-properties' element={<MyPropertiesPage/>}></Route>
+    <Route path='/properties-management' element={<PropertiesManagementPage/>}></Route>
     <Route path='/property/:id' element={<SinglePropertyPage/>}></Route>
     <Route path='/dashboard' element={<DashboardPage/>}></Route>
     <Route path='/listings' element={<ListingsPage/>}></Route>
+    <Route path='/estates-management' element={<EstatesManagementPage/>}></Route>
+    <Route path='/profile' element={<EstatesManagementPage/>}></Route>
    </Routes>
     </BrowserRouter>
   );

@@ -28,166 +28,91 @@ export default function SearchForm() {
 
     const searchProperties = () => {
         navigate(`/listings?search=true${property.title && `&title=${property.title}`}${property.type && `&type=${property.type}`}${property.status && `&status=${property.status}`}${property.location && `&location=${property.location}`}${`&bedrooms=${property.bedrooms}`}${`&bathrooms=${property.bathrooms}`}`);
-        window.location.reload();
+        // window.location.reload();
     }
 
-    return <div className="container js-home-1-search" style={{ marginTop: "31px" }}>
+    return <> 
 
-        {/* <!--PROPERTY SEARCH FORM 1 BEGIN--> */}
-
-        <form id="search-form-1">
-            <div className="property-search">
-                <div className="main-apartment-search-options">
-                    <div className="options-wrapper-main">
-                        <div className="wrapper search-property">
-                            <h3>Title or Key Word</h3>
-                            <input onChange={handleInputChange} name="title" type="text" className="property-searchinput" placeholder="Title or Key Word" />
+     {/* SEARCH FORM STARTS */}
+     <div className="property-search-field bg-white ">
+            <div className="property-search-item">
+                <form className="row basic-select-wrapper">
+                    <div className="form-group col-lg-3 col-md-6">
+                        <label className="form-label">Property type</label>
+                        <select onChange={handleSelectChange} name="type" className="form-control search-form-select">
+                            <option value="">--- Select Type --- </option>
+                            <option>All Type</option>
+                            <option>Villa</option>
+                            <option>Apartment Building</option>
+                            <option>Commercial</option>
+                            <option>Office</option>
+                            <option>Residential</option>
+                            <option>Shop</option>
+                            <option>Apartment</option>
+                        </select>
+                    </div>
+                    <div className="form-group col-lg-3 col-md-6">
+                        <label className="form-label">Property Status</label>
+                        <select onChange={handleSelectChange} name="status" className="form-control search-form-select">
+                            <option value="">--- Select Status --- </option>
+                            <option value="rent">For Rent</option>
+                            <option value="sale">For Sale</option>
+                        </select>
+                    </div>
+                    <div className="form-group d-flex col-lg-4">
+                        <div className="form-group-search">
+                            <label className="form-label">Location</label>
+                            <div className="d-flex align-items-center"><i className="far fa-compass me-1"></i>
+                                <input onChange={handleInputChange} name="location" className="form-control search-form-select" type="search" placeholder="Search Location" /></div>
                         </div>
-                        <div className="wrapper search-property">
-                            <h3>Location</h3>
-                            <input onChange={handleInputChange} name="location" type="text" className="property-searchinput" placeholder="Location" />
+                        <span className="align-items-center ms-3 d-none d-lg-block"><button onClick={searchProperties} className="btn btn-primary d-flex align-items-center" type="submit"><i className="fas fa-search me-1"></i><span></span></button></span>
+                    </div>
+                    <div className="form-group text-center col-lg-2">
+                        <div className="d-flex justify-content-center d-md-inline-block">
+                            <a className="more-search p-0" data-bs-toggle="collapse" href="#advanced-search" role="button" aria-expanded="false" aria-controls="advanced-search"> <span className="d-block pe-2 mb-1">Advanced search</span>
+                                <i className="fas fa-angle-double-down"></i></a>
                         </div>
-
-
-                        <div className="wrapper">
-                            <h3>Property type</h3>
-                            <select onChange={handleSelectChange} name="type" className="select-input big-input property-searchinput"
-                                data-placeholder="type">
-                                <option value="">Property Type</option>
-                                <option value="apartment">Apartment</option>
-                                <option value="farm">Farm</option>
-                                <option value="condo">Condo</option>
-                                <option value="multi-family-house">Multi Family House</option>
-                                <option value="townhouse">Townhouse</option>
-                            </select>
-                        </div>
-
-                        <div className="wrapper">
-                            <h3>Status</h3>
-                            <select onChange={handleSelectChange} name="status" className="select-input big-input badge-test"
-                                data-placeholder="status">
-                                <option value="" data-text="small-badge sale">Property Status</option>
-                                <option value="sale" data-text="small-badge sale">For Sale</option>
-                                <option value="rent" data-text="small-badge rent">For Rent</option>
-                                <option value="new" data-text="small-badge new">New</option>
-                                <option value="featured" data-text="small-badge featured">Featured</option>
-                                <option value="reused" data-text="small-badge reused">Reused</option>
-                                <option value="hot" data-text="small-badge hot">Hot Offer</option>
-                            </select>
-                        </div>
-
-                        <div className="wrapper advanced-wrapper">
-                            <h3>Advanced mode</h3>
-                            <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round"></span>
-                            </label>
-                            <button onClick={searchProperties} className="property-button">Find Properties</button>
+                        <div className="d-flex justify-content-center d-md-inline-block mt-3">
+                            <button type="button" className="btn-sm btn-primary">Reset Filter</button>
                         </div>
                     </div>
-
-                </div>
-
-                <div className="toggle-options">
-
-                <div className="main-apartment-search-options">
-                    <div className="options-wrapper-main">
-                       
-                        <div className="wrapper search-property">
-                            <h3>Min. Price(NGN)</h3>
-                            <input onChange={handleInputChange} name="min-price" type="number" className="property-searchinput" placeholder="Min. Price" />
+                    <div className="collapse advanced-search p-0 row mb-5" style={{backgroundColor : "white"}} id="advanced-search">
+                        <div className="form-group col-lg-3 col-md-6">
+                            <div className="form-group-search">
+                                <label className="form-label">Bedrooms</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-bed me-1"></i>
+                                    <input onChange={handleInputChange} name="bedrooms" type="number" className="form-control search-form-select" placeholder="No. Of Bedrooms" /></div>
+                            </div>
                         </div>
-                        <div className="wrapper search-property">
-                            <h3>Max. Price(NGN)</h3>
-                            <input onChange={handleInputChange} name="max-price" type="number" className="property-searchinput" placeholder="Max. Price" />
+                        <div className="form-group col-lg-3 col-md-6">
+                            <div className="form-group-search">
+                                <label className="form-label">Bathrooms</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-bath me-1"></i>
+                                    <input onChange={handleInputChange} name="bathrooms" type="number" className="form-control search-form-select" placeholder="No. Of Bathrooms" /></div>
+                            </div>
                         </div>
-                        <div className="wrapper search-property">
-                            <h3>Bedrooms</h3>
-                            <input onChange={handleInputChange} name="bedrooms" type="number" className="property-searchinput" placeholder="Bedrooms" />
+                        <div className="form-group d-flex col-lg-4">
+                            <div className="form-group-search">
+                                <label className="form-label">Minimum Price</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-minus me-1"></i>
+                                    <input className="form-control search-form-select" type="number" placeholder="Min. Price" /></div>
+                            </div>
                         </div>
-                        <div className="wrapper search-property">
-                            <h3>Bathrooms</h3>
-                            <input onChange={handleInputChange} name="bathrooms" type="number" className="property-searchinput" placeholder="Bathrooms" />
+                        <div className="form-group text-center col-lg-2">
+                            <div className="form-group-search">
+                                <label className="form-label">Maximum Price</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-plus me-1"></i>
+                                    <input className="form-control search-form-select" type="number" placeholder="Max. Price" /></div>
+                            </div>
                         </div>
-
-
-                        
-                       
                     </div>
-
-                </div>
-
-                    <div style={{ display: "none" }} className="apartment-features">
-                        <span>Other features:</span>
-
-                        <span className="features-count">4</span>
-                        <div className="checkboxes-block">
-                            <div>
-                                <input type="checkbox" name="conditioning" id="ch1" className="css-checkbox" />
-                                <label htmlFor="ch1" className="css-label">Air Conditioning</label> <br />
-                            </div>
-                            <div>
-                                <input type="checkbox" name="refrigerator" id="ch2" className="css-checkbox" />
-                                <label htmlFor="ch2" className="css-label">Refrigerator</label> <br />
-                            </div>
-
-
-                            <div>
-                                <input type="checkbox" name="barbeque" id="ch3" className="css-checkbox" />
-                                <label htmlFor="ch3" className="css-label">Barbeque</label> <br />
-                            </div>
-                            <div>
-                                <input type="checkbox" name="sauna" id="ch4" className="css-checkbox" />
-                                <label htmlFor="ch4" className="css-label">Sauna</label> <br />
-                            </div>
-
-
-                            <div><input type="checkbox" name="dryer" id="ch5" className="css-checkbox" />
-                                <label htmlFor="ch5" className="css-label">Dryer</label> <br />
-                            </div>
-                            <div><input type="checkbox" name="pool" id="ch6" className="css-checkbox" />
-                                <label htmlFor="ch6" className="css-label">Swimming Pool</label> <br />
-                            </div>
-
-
-                            <div>
-                                <input type="checkbox" name="gym" id="ch7" className="css-checkbox" />
-                                <label htmlFor="ch7" className="css-label">Gym</label> <br />
-                            </div>
-
-                            <div>
-                                <input type="checkbox" name="tv" id="ch8" className="css-checkbox" />
-                                <label htmlFor="ch8" className="css-label">TV Cable</label> <br />
-                            </div>
-
-
-                            <div>
-                                <input type="checkbox" name="laundry" id="ch9" className="css-checkbox" />
-                                <label htmlFor="ch9" className="css-label">Laundry</label> <br />
-                            </div>
-                            <div><input type="checkbox" name="washer" id="ch10" className="css-checkbox" />
-                                <label htmlFor="ch10" className="css-label">Washer</label> <br />
-                            </div>
-
-
-                            <div>
-                                <input type="checkbox" name="microwave" id="ch11" className="css-checkbox" />
-                                <label htmlFor="ch11" className="css-label">Microwave</label> <br />
-                            </div>
-                            <div>
-                                <input type="checkbox" name="wifi" id="ch12" className="css-checkbox" />
-                                <label htmlFor="ch12" className="css-label">WI FI</label> <br />
-                            </div>
-                        </div>
-
-
+                    <div className="d-lg-none btn-mobile p-3 d-grid">
+                        <button className="btn btn-primary align-items-center" type="submit"><i className="fas fa-search me-1"></i><span>Search</span></button>
                     </div>
-
-                </div>
+                </form>
             </div>
-        </form>
+        </div>
+        {/* SEARCH FORM ENDS */}
+    </>
 
-
-        {/* <!--PROPERTY SEARCH FORM 1 END--> */}
-    </div>
 }

@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { searchProperties } from "../api/PropertyApi";
+import BreadCrumb from "../components/BreadCrumb";
 import IPropertyInterface from "../interfaces/IPropertyInterface";
 export default function ListingsPage() {
     const navigate = useNavigate();
@@ -40,318 +41,167 @@ export default function ListingsPage() {
         getListing();
     }, [title, location, type, status, bedrooms, bathrooms]);
     return <>
+        <BreadCrumb page={`SEARCH : Status = ${status}, Location = ${location}, Type = ${type}, Bedrooms = ${bedrooms}, Bathrooms = ${bathrooms}, Min. Price = , Max. Price = `} />
 
-        {/* ===== SEARCHFORM =====*/}
-        <div className="container js-home-1-search" style={{ marginTop: "31px" }}>
-
-            {/* <!--PROPERTY SEARCH FORM 1 BEGIN--> */}
-
-            <form id="search-form-1">
-                <div className="property-search">
-                    <div className="main-apartment-search-options">
-                        <div className="options-wrapper-main">
-                            <div className="wrapper search-property">
-                                <h3>Title or Key Word</h3>
-                                <input onChange={e => setTitle(e.target.value)} name="title" type="text" className="property-searchinput" placeholder="Title or Key Word" />
-                            </div>
-                            <div className="wrapper search-property">
-                                <h3>Location</h3>
-                                <input onChange={e => setLocation(e.target.value)} name="location" type="text" className="property-searchinput" placeholder="Location" />
-                            </div>
-
-
-                            <div className="wrapper">
-                                <h3>Property type</h3>
-                                <select onChange={e => setType(e.target.value)} name="type" className="select-input big-input property-searchinput"
-                                    data-placeholder="type">
-                                    <option value="">Property Type</option>
-                                    <option value="apartment">Apartment</option>
-                                    <option value="farm">Farm</option>
-                                    <option value="condo">Condo</option>
-                                    <option value="multi-family-house">Multi Family House</option>
-                                    <option value="townhouse">Townhouse</option>
-                                </select>
-                            </div>
-
-                            <div className="wrapper">
-                                <h3>Status</h3>
-                                <select onChange={e => setStatus(e.target.value)} name="status" className="select-input big-input badge-test"
-                                    data-placeholder="status">
-                                    <option value="" data-text="small-badge sale">Property Status</option>
-                                    <option value="sale" data-text="small-badge sale">For Sale</option>
-                                    <option value="rent" data-text="small-badge rent">For Rent</option>
-                                    <option value="new" data-text="small-badge new">New</option>
-                                    <option value="featured" data-text="small-badge featured">Featured</option>
-                                    <option value="reused" data-text="small-badge reused">Reused</option>
-                                    <option value="hot" data-text="small-badge hot">Hot Offer</option>
-                                </select>
-                            </div>
-
-                            <div className="wrapper advanced-wrapper">
-                                <h3>Advanced mode</h3>
-                                <label className="switch">
-                                    <input type="checkbox" />
-                                    <span className="slider round"></span>
-                                </label>
-                                {/* <button  className="property-button">Find Properties</button> */}
-                            </div>
-                        </div>
-
+        {/* SEARCH FORM STARTS */}
+        <div className="property-search-field bg-white p-2">
+            <div className="property-search-item">
+                <form className="row basic-select-wrapper">
+                    <div className="form-group col-lg-3 col-md-6">
+                        <label className="form-label">Property type</label>
+                        <select onChange={e => setType(e.target.value)} name="type" className="form-control search-form-select">
+                            <option value="">--- Select Type --- </option>
+                            <option>All Type</option>
+                            <option>Villa</option>
+                            <option>Apartment Building</option>
+                            <option>Commercial</option>
+                            <option>Office</option>
+                            <option>Residential</option>
+                            <option>Shop</option>
+                            <option>Apartment</option>
+                        </select>
                     </div>
-
-                    <div className="toggle-options">
-
-                        
-                    <div className="main-apartment-search-options">
-                    <div className="options-wrapper-main">
-                       
-                        <div className="wrapper search-property">
-                            <h3>Min. Price(NGN)</h3>
-                            <input  name="min-price" type="number" className="property-searchinput" placeholder="Min. Price" />
-                        </div>
-                        <div className="wrapper search-property">
-                            <h3>Max. Price(NGN)</h3>
-                            <input  name="max-price" type="number" className="property-searchinput" placeholder="Max. Price" />
-                        </div>
-                        <div className="wrapper search-property">
-                            <h3>Bedrooms</h3>
-                            <input onChange={e => setBedrooms(Number(e.target.value))} name="bedrooms" type="number" className="property-searchinput" placeholder="Bedrooms" />
-                        </div>
-                        <div className="wrapper search-property">
-                            <h3>Bathrooms</h3>
-                            <input onChange={e => setBathrooms(Number(e.target.value))} name="bathrooms" type="number" className="property-searchinput" placeholder="Bathrooms" />
-                        </div>
-
-
-                        
-                       
+                    <div className="form-group col-lg-3 col-md-6">
+                        <label className="form-label">Property Status</label>
+                        <select onChange={e => setStatus(e.target.value)} name="status" className="form-control search-form-select">
+                            <option value="">--- Select Status --- </option>
+                            <option value="rent">For Rent</option>
+                            <option value="sale">For Sale</option>
+                        </select>
                     </div>
-
-                </div>
-
-                        <div style={{ display: "none" }} className="apartment-features">
-                            <span>Other features:</span>
-
-                            <span className="features-count">4</span>
-                            <div className="checkboxes-block">
-                                <div>
-                                    <input type="checkbox" name="conditioning" id="ch1" className="css-checkbox" />
-                                    <label htmlFor="ch1" className="css-label">Air Conditioning</label> <br />
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="refrigerator" id="ch2" className="css-checkbox" />
-                                    <label htmlFor="ch2" className="css-label">Refrigerator</label> <br />
-                                </div>
-
-
-                                <div>
-                                    <input type="checkbox" name="barbeque" id="ch3" className="css-checkbox" />
-                                    <label htmlFor="ch3" className="css-label">Barbeque</label> <br />
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="sauna" id="ch4" className="css-checkbox" />
-                                    <label htmlFor="ch4" className="css-label">Sauna</label> <br />
-                                </div>
-
-
-                                <div><input type="checkbox" name="dryer" id="ch5" className="css-checkbox" />
-                                    <label htmlFor="ch5" className="css-label">Dryer</label> <br />
-                                </div>
-                                <div><input type="checkbox" name="pool" id="ch6" className="css-checkbox" />
-                                    <label htmlFor="ch6" className="css-label">Swimming Pool</label> <br />
-                                </div>
-
-
-                                <div>
-                                    <input type="checkbox" name="gym" id="ch7" className="css-checkbox" />
-                                    <label htmlFor="ch7" className="css-label">Gym</label> <br />
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" name="tv" id="ch8" className="css-checkbox" />
-                                    <label htmlFor="ch8" className="css-label">TV Cable</label> <br />
-                                </div>
-
-
-                                <div>
-                                    <input type="checkbox" name="laundry" id="ch9" className="css-checkbox" />
-                                    <label htmlFor="ch9" className="css-label">Laundry</label> <br />
-                                </div>
-                                <div><input type="checkbox" name="washer" id="ch10" className="css-checkbox" />
-                                    <label htmlFor="ch10" className="css-label">Washer</label> <br />
-                                </div>
-
-
-                                <div>
-                                    <input type="checkbox" name="microwave" id="ch11" className="css-checkbox" />
-                                    <label htmlFor="ch11" className="css-label">Microwave</label> <br />
-                                </div>
-                                <div>
-                                    <input type="checkbox" name="wifi" id="ch12" className="css-checkbox" />
-                                    <label htmlFor="ch12" className="css-label">WI FI</label> <br />
-                                </div>
+                    <div className="form-group d-flex col-lg-4">
+                        <div className="form-group-search">
+                            <label className="form-label">Location</label>
+                            <div className="d-flex align-items-center"><i className="far fa-compass me-1"></i>
+                                <input onChange={e => setLocation(e.target.value)} name="location" className="form-control search-form-select" type="search" placeholder="Search Location" /></div>
+                        </div>
+                        <span className="align-items-center ms-3 d-none d-lg-block"><button className="btn btn-primary d-flex align-items-center" type="submit"><i className="fas fa-search me-1"></i><span>Search</span></button></span>
+                    </div>
+                    <div className="form-group text-center col-lg-2">
+                        <div className="d-flex justify-content-center d-md-inline-block">
+                            <a className="more-search p-0" data-bs-toggle="collapse" href="#advanced-search" role="button" aria-expanded="false" aria-controls="advanced-search"> <span className="d-block pe-2 mb-1">Advanced search</span>
+                                <i className="fas fa-angle-double-down"></i></a>
+                        </div>
+                        <div className="d-flex justify-content-center d-md-inline-block mt-3">
+                            <button type="button" className="btn-sm btn-primary">Reset Filter</button>
+                        </div>
+                    </div>
+                    <div className="collapse advanced-search p-0 row mb-5" id="advanced-search">
+                        <div className="form-group col-lg-3 col-md-6">
+                            <div className="form-group-search">
+                                <label className="form-label">Bedrooms</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-bed me-1"></i>
+                                    <input onChange={e => setBedrooms(Number(e.target.value))} name="bedrooms" type="number" className="form-control search-form-select" placeholder="No. Of Bedrooms" /></div>
                             </div>
-
-
                         </div>
-
+                        <div className="form-group col-lg-3 col-md-6">
+                            <div className="form-group-search">
+                                <label className="form-label">Bathrooms</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-bath me-1"></i>
+                                    <input onChange={e => setBathrooms(Number(e.target.value))} name="bathrooms" type="number" className="form-control search-form-select" placeholder="No. Of Bathrooms" /></div>
+                            </div>
+                        </div>
+                        <div className="form-group d-flex col-lg-4">
+                            <div className="form-group-search">
+                                <label className="form-label">Minimum Price</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-minus me-1"></i>
+                                    <input className="form-control search-form-select" type="number" placeholder="Min. Price" /></div>
+                            </div>
+                        </div>
+                        <div className="form-group text-center col-lg-2">
+                            <div className="form-group-search">
+                                <label className="form-label">Maximum Price</label>
+                                <div className="d-flex align-items-center"><i className="fa fa-plus me-1"></i>
+                                    <input className="form-control search-form-select" type="number" placeholder="Max. Price" /></div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
-
-
-            {/* <!--PROPERTY SEARCH FORM 1 END--> */}
+                    <div className="d-lg-none btn-mobile p-3 d-grid">
+                        <button className="btn btn-primary align-items-center" type="submit"><i className="fas fa-search me-1"></i><span>Search</span></button>
+                    </div>
+                </form>
+            </div>
         </div>
-        {/* ===== SEARCHFORM =====*/}
+        {/* SEARCH FORM ENDS */}
 
+       
+        {/* PROPERTY LIST STARTS */}
 
-        {loading ? <h1 className="container">Fetching Properties ...</h1> :
-            properties.length === 0 ? <h1 className="container">No Property Found</h1> : null}
-
-        <div className={`${loading || properties.length === 0 ? "container hide-container" : "container"}`}>
-
-            {/* <!--APARTMENT GRID BEGIN--> */}
-            <div className="apartment-grid">
-                <div className="owl-carousel owl-theme">
-                    <div className="item">
-                        <div className="row">
-
-                            {
-                                properties.map(property => {
-                                    return <a href={`/property/${property._id}`} key={property._id} className="col-md-4 col-sm-6 col-xs-12">
-                                        <div className="property-block">
-                                            <p className="property-type">Farm</p>
-                                            <p className="property-title">{property.title}</p>
-                                            <div className="apartment-address">
-                                                <i className="material-icons">place</i>
-                                                <span className="address">{property.location}</span>
-                                            </div>
-
-                                            <div className="apartment-image">
-                                                <img src={property.cover || "images/image.png"} alt="image" />
-                                                <div className="badges">
-                                                    {/* <p className="featured">Featured</p> */}
-                                                    <p className="rent">{property.status}</p>
-                                                    {/* <p className="sale">For Sale</p> */}
-                                                </div>
-
-                                            </div>
-
-                                            <div className="apartment-values">
-                                                <span>Beds: {property.bedrooms}</span>
-                                                <span>Bath: {property.bathrooms} </span>
-                                                <span>Sq Ft: </span>
-                                            </div>
-                                            <div className="apartment-info">
-                                                <div className="apartment-price">
-                                                    <p className="price-big">&#163;{property.price}{property.period && `/${property.period}`}</p>
-                                                    {/* <p className="price-small">&#163;1,800/sq ft</p> */}
-                                                </div>
-                                                {/* <div className="icons">
-                                            <a href="#" className="clone"> <i className="material-icons icons-style"></i></a>
-                                            <a href="#" className="heart"><i className="material-icons icons-style"></i></a>
-                                        </div> */}
-                                            </div>
-                                            <div className="apartment-manager">
-                                                {/* <div className="manager-wrap">
-                                            <div className="manager-icon">
-                                                <a href="#chat"> <img src="images/userpic.png" alt="userpic" /></a>
-                                                <div className="online-status"></div>
-                                            </div>
-                                            <span className="manager-name">Eleanor French</span>
-                                        </div> */}
-                                                <div className="calendar">
-                                                    <i className="material-icons">insert_invitation</i>
-                                                    <span> 1 days a go</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-
-
-                                })
-                            }
-
-
+        <section className="space-pb">
+            <div className="container">
+                <div style={{ visibility: "hidden" }} className="row justify-content-center hidden">
+                    <div className="col-lg-8">
+                        <div className="section-title text-center">
+                            <h2>Newly listed properties</h2>
+                            <p>Find your dream home from our Newly added properties</p>
                         </div>
                     </div>
+                </div>
 
-                    {/* <div className="item">
-                    <div className="row">
-                        <div className="col-md-4 col-sm-6 col-xs-12">
-                            <div className="property-block">
-                                <p className="property-type">Farm</p>
-                                <p className="property-title">Luxury Apartment ocean view</p>
-                                <div className="apartment-address">
-                                    <i className="material-icons">place</i>
-                                    <span className="address">153 Adriana Mews Suite 247</span>
-                                </div>
+                <div className="row">
+                    {loading ? <div>Fetching Properties</div> : properties.length === 0 ? <div>No Property Found</div> :
+                        properties.map(property => {
+                            return <div key={property._id} className="col-sm-6 col-md-4">
+                                <div className="property-item">
+                                    <div className="property-image bg-overlay-gradient-04">
+                                        <Link to={`/property/${property._id}`}>
+                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "images/property/grid/06.jpg"} alt="" />
 
-                                <div className="apartment-image">
-                                    <img src="images/image.png" alt="image" />
-                                    <div className="badges">
-                                        <p className="featured">Featured</p>
-                                        <p className="rent">For Rent</p>
-                                        <p className="sale">For Sale</p>
-                                    </div>
-
-                                </div>
-
-                                <div className="apartment-values">
-                                    <span>Beds: 4</span>
-                                    <span>Bath: 4 </span>
-                                    <span>Sq Ft: 2100</span>
-                                </div>
-                                <div className="apartment-info">
-                                    <div className="apartment-price">
-                                        <p className="price-big">&#163;1.245.000</p>
-                                        <p className="price-small">&#163;1,800/sq ft</p>
-                                    </div>
-                                    <div className="icons">
-                                        <a href="#" className="clone"> <i className="material-icons icons-style"></i></a>
-                                        <a href="#" className="heart"><i className="material-icons icons-style"></i></a>
-                                    </div>
-                                </div>
-                                <div className="apartment-manager">
-                                    <div className="manager-wrap">
-                                        <div className="manager-icon">
-                                            <a href="#chat"> <img src="images/userpic.png" alt="userpic" /></a>
-                                            <div className="online-status"></div>
+                                        </Link>
+                                        <div className="property-lable">
+                                            <span className="badge badge-md bg-primary">{property.type}</span>
+                                            {property.status && <span className="badge badge-md bg-info text-uppercase">{property.status} </span>}
                                         </div>
-                                        <span className="manager-name">Eleanor French</span>
+                                        <div className="property-agent">
+                                            <div className="property-agent-image">
+                                                <img className="img-fluid" src="images/avatar/06.jpg" alt="" />
+                                            </div>
+                                            <div className="property-agent-info">
+                                                <a className="property-agent-name" href="#">Michael Bean</a>
+                                                <span className="d-block">Research</span>
+                                                <ul className="property-agent-contact list-unstyled">
+                                                    <li><a href="#"><i className="fas fa-mobile-alt"></i> </a></li>
+                                                    <li><a href="#"><i className="fas fa-envelope"></i> </a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div className="property-agent-popup">
+                                            <a href="#"><i className="fas fa-camera"></i> 02</a>
+                                        </div>
                                     </div>
-                                    <div className="calendar">
-                                        <i className="material-icons">insert_invitation</i>
-                                        <span> 3 days a go</span>
+                                    <div className="property-details">
+                                        <div className="property-details-inner">
+                                            <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
+                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                            <span className="property-agent-date"><i className="far fa-clock fa-md"></i>3 years ago</span>
+                                            <div className="property-price">${property.price}{property.period && <span> / {property.period}</span>} </div>
+                                            <ul className="property-info list-unstyled d-flex">
+                                                <li className="flex-fill property-bed"><i className="fas fa-bed"></i>Bed<span>{property.bedrooms}</span></li>
+                                                <li className="flex-fill property-bath"><i className="fas fa-bath"></i>Bath<span>{property.bathrooms}</span></li>
+                                                <li className="flex-fill property-m-sqft"><i className="far fa-square"></i>sqft<span>3,657m</span></li>
+                                            </ul>
+                                        </div>
+                                        <div className="property-btn">
+                                            <a className="property-link" href="property-detail-style-01.html">See Details</a>
+                                            <ul className="property-listing-actions list-unstyled mb-0">
+                                                <li className="property-compare"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i className="fas fa-exchange-alt"></i></a></li>
+                                                <li className="property-favourites"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Favourite" href="#"><i className="far fa-heart"></i></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div> */}
-                </div>
-                {/* <!-- class hidebutton hide button-wrapper block, class hidespan hide span-wrapper --> */}
-                <div className="arrow-block hidespan">
-
-                    <div className="arrow-wrapper">
-                        <a href="#" className="arrow-prev">
-                            <i className="material-icons">arrow_back</i>
-                        </a>
-                        <a href="#" className="arrow-next">
-                            <i className="material-icons">arrow_forward</i>
-                        </a>
-                    </div>
-                    <div className="span-wrapper">
-                        <span>Partners</span>
-                    </div>
-                    <div className="button-wrapper">
-                        <a href="#">button</a>
+                        })
+                    }
+                    <div className="col-12 text-center">
+                        <a className="btn btn-link" href="property-list.html"><i className="fas fa-plus"></i>View All Listings</a>
                     </div>
                 </div>
             </div>
-            {/* <!--APARTMENT GRID END--> */}
-        </div>
+        </section>
+        {/* PROPERTY LIST ENDS */}
+
+
 
 
     </>

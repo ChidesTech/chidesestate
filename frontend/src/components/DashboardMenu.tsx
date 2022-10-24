@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 
-const DashboardMenu = () => {
+const DashboardMenu = (props : any) => {
    const navigate = useNavigate();
    const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
     useEffect(() =>{
@@ -10,67 +10,53 @@ const DashboardMenu = () => {
     }, []);
 
     return <>
-        <div className="account_menu_categories">
-            <Link to="/dashboard" className="js-menu-links" data-display-id="dashboard">
-                <div className="category_item">
-                    <div className="category_item__category-name">
-                        <i className="material-icons">insert_chart</i>
-                        <div className="new-notification"></div>
-                        <span>Dashboard</span>
+            <div className="col-12 mb-5">
+                        <div className="profile-sidebar bg-holder bg-overlay-black-70" style={{backgroundImage: "url(images/banner-01.jpg)"}}>
+                            <div className="d-sm-flex align-items-center position-relative">
+                                <div className="profile-avatar">
+                                    <img className="img-fluid  rounded-circle" src="images/agent/04.jpg" alt=""/>
+                                </div>
+                                <div className="ms-sm-4">
+                                    <h4 className="text-white">Alice Williams</h4>
+                                    <b className="text-white">alicewilliams@gmail.com</b>
+                                </div>
+                                {props.page === "properties-management" ?  <div className="ms-auto my-4 mt-sm-0">
+                                    <Link className="btn btn-white btn-md" to="/submit-property"> <i className="fa fa-plus-circle"></i>Add Property </Link>
+                                </div> : props.page === "estates-management" ? 
+                                 <div className="ms-auto my-4 mt-sm-0">
+                                    <a className="btn btn-white btn-md" href="/submit-property"> <i className="fa fa-plus-circle"></i>Add Estate </a>
+                                </div> :  null
+                                }
+                               
+                            </div>
+                            <div className="profile-nav">
+                                <ul className="nav">
+                                   
+                                    <li className="nav-item">
+                                        <Link className={props.page === "dashboard" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/dashboard">
+                                            <i className="far fa-clipboard"></i>Dashboard</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={props.page === "properties-management" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/properties-management">
+                                            <i className="fa fa-list"></i>Properties Management</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={props.page === "estates-management" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/estates-management">
+                                            <i className="far fa-edit"></i>Estates Management</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className={props.page === "submit-property" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/submit-property"><i className="fa fa-home"></i>Submit Property</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link nav-link-inactive" to="/submit-property"><i className="fas fa-plus-square"></i>Add Estate</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link className="nav-link nav-link-inactive" to="/profile"><i className="fas fa-user"></i>Edit Profile</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </Link>
-            <Link to="/submit-property" className="js-menu-links" data-display-id="submit">
-                <div className="category_item">
-                    <div className="category_item__category-name">
-                        <i className="material-icons">add_circle</i>
-                        <div className="new-notification"></div>
-                        <span>Submit property</span>
-                    </div>
-                </div>
-            </Link>
-            <Link to="/my-properties" className="js-menu-links new-notification__enabled" data-display-id="property">
-                <div className="category_item">
-                    <div className="category_item__category-name">
-                        <i className="material-icons">view_module</i>
-                        <div className="new-notification"></div>
-                        <span>Properties </span>
-                    </div>
-
-                    <span className="category_item__item-counts">
-                        12
-                    </span>
-                </div>
-            </Link>
-            <Link to="/my-properties" className="js-menu-links new-notification__enabled" data-display-id="property">
-                <div className="category_item">
-                    <div className="category_item__category-name">
-                        <i className="material-icons fa fa-users "></i>
-                        <div className="new-notification"></div>
-                        <span>Users </span>
-                    </div>
-
-                    <span className="category_item__item-counts">
-                        12
-                    </span>
-                </div>
-            </Link>
-           
-           
-            
-            
-            <a href="#settings" className="js-menu-links" data-display-id="settings">
-                <div className="category_item">
-                    <div className="category_item__category-name">
-                        <i className="material-icons">settings</i>
-                        <div className="new-notification"></div>
-                        <span>Settings</span>
-                    </div>
-                </div>
-            </a>
-
-            <i className="material-icons js-test-toggle lg-visible"></i>
-        </div>
     </>
 }
 
