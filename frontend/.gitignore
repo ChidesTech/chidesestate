@@ -3,7 +3,6 @@
 # dependencies
 /node_modules
 /public/images
-/public/fonts
 
 /.pnp
 .pnp.js
