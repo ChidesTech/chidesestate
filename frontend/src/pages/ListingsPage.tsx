@@ -139,13 +139,13 @@ export default function ListingsPage() {
                 </div>
 
                 <div className="row">
-                    {loading ? <div>Fetching Properties</div> : properties.length === 0 ? <div>No Property Found</div> :
+                    {loading ? <h4>Fetching Properties . . .</h4> : properties.length === 0 ? <h4>No Property Found</h4> :
                         properties.map(property => {
                             return <div key={property._id} className="col-sm-6 col-md-4">
                                 <div className="property-item">
                                     <div className="property-image bg-overlay-gradient-04">
                                         <Link to={`/property/${property._id}`}>
-                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "images/property/grid/06.jpg"} alt="" />
+                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "/images/empty.jpg"} alt="" />
 
                                         </Link>
                                         <div className="property-lable">

@@ -32,8 +32,8 @@ export default function HomePage() {
             <div className="container">
                 <div className="row">
                     <div className="col-12 position-relative">
-                        <h1 className="text-white text-center mb-2">Create lasting wealth through Real Villa</h1>
-                        <p className="lead text-center text-white mb-4 fw-normal">Take a step to realizing your dream. #TimeToMove</p>
+                        <h1 className="text-white text-center mb-2">Create wealth through Chides Estates</h1>
+                        <p className="lead text-center text-white mb-4 fw-normal">Take a step to realizing your dream. </p>
                         <SearchForm/>
                     </div>
                 </div>
@@ -130,20 +130,20 @@ export default function HomePage() {
                 </div>
 
                 <div className="row">
-                    {loading ? <div>Fetching Properties</div> : properties.length === 0 ? <div>No Property Found</div> :
+                    {loading ? <h4>Fetching Properties . . .</h4> : properties.length === 0 ? <h4>No Property Found</h4> :
                         properties.map(property => {
                             return <div key={property._id} className="col-sm-6 col-md-4">
                                 <div className="property-item">
                                     <div className="property-image bg-overlay-gradient-04">
                                         <Link to={`/property/${property._id}`}>
-                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "images/property/grid/06.jpg"} alt="" />
+                                            <img style={{ height: "15rem" }} className="img-fluid w-100" src={property.cover || "/images/empty.jpg"} alt="" />
 
                                         </Link>
                                         <div className="property-lable">
-                                            <span className="badge badge-md bg-primary">{property.type}</span>
+                                            <span className="badge badge-md bg-primary text-uppercase">{property.type}</span>
                                             {property.status && <span className="badge badge-md bg-info text-uppercase">{property.status} </span>}
                                         </div>
-                                        <div className="property-agent">
+                                        {/* <div className="property-agent">
                                             <div className="property-agent-image">
                                                 <img className="img-fluid" src="images/avatar/06.jpg" alt="" />
                                             </div>
@@ -155,14 +155,14 @@ export default function HomePage() {
                                                     <li><a href="#"><i className="fas fa-envelope"></i> </a></li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> */}
                                         <div className="property-agent-popup">
-                                            <a href="#"><i className="fas fa-camera"></i> 02</a>
+                                            <a href="#"><i className="fas fa-camera"></i> {property.images && property.images.length}</a>
                                         </div>
                                     </div>
                                     <div className="property-details">
                                         <div className="property-details-inner">
-                                            <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
+                                            <h5 className="property-title"><Link to={`/property/${property._id}`}>{property.title}</Link></h5>
                                             <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
                                             <span className="property-agent-date"><i className="far fa-clock fa-md"></i>3 years ago</span>
                                             <div className="property-price">${property.price}{property.period && <span> / {property.period}</span>} </div>
@@ -173,7 +173,7 @@ export default function HomePage() {
                                             </ul>
                                         </div>
                                         <div className="property-btn">
-                                            <a className="property-link" href="property-detail-style-01.html">See Details</a>
+                                            <Link className="property-link" to={`/property/${property._id}`}>See Details</Link>
                                             <ul className="property-listing-actions list-unstyled mb-0">
                                                 <li className="property-compare"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Compare" href="#"><i className="fas fa-exchange-alt"></i></a></li>
                                                 <li className="property-favourites"><a data-bs-toggle="tooltip" data-bs-placement="top" title="Favourite" href="#"><i className="far fa-heart"></i></a></li>

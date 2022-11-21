@@ -17,7 +17,8 @@ interface IPropertyInterface{
     details : string[],
     success? : string,
     property? : object,
-    error? : string
+    error? : string,
+    createdAt? : any
 } 
 
 export default IPropertyInterface;

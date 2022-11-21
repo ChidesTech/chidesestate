@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { createUser } from "../api/UserApi";
 import BreadCrumb from "../components/BreadCrumb";
 import IUserInterface from "../interfaces/IUserInterface";
@@ -28,7 +29,7 @@ export default function RegisterPage(){
             }
             const {data} = await createUser(user);
             if(data.success){
-                alert("Registration Successful");
+               Swal.fire("Done","Registration Successful", "success");
                 navigate("/login");
 
             }

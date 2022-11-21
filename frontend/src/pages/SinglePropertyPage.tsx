@@ -48,13 +48,13 @@ export default function SinglePropertyPage() {
         <div className="col-lg-4 col-md-6">
           <div className="price-meta">
             <div className="d-inline">
-              <span className="price font-xll text-primary me-2">$1500000</span>
-              <span className="sub-price font-lg text-dark"><b>$6,500/Sqft </b> </span>
+              <span className="price font-xll text-primary me-2">${property.price}</span>
+              <span className="sub-price font-lg text-dark"><b>{property.period && `/${property.period}`} </b> </span>
             </div>
           </div>
         </div>
         <div className="col-sm-12 mt-2">
-          <img style={{height : "30rem"}} className="img-fluid w-100" src={property.cover} alt=""/>
+          <img style={{height : "30rem"}} className="img-fluid w-100" src={property.cover || "/images/empty.jpg"} alt=""/>
         </div>
       </div>
       <div className="row">

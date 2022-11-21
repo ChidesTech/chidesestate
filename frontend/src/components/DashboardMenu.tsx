@@ -24,7 +24,7 @@ const DashboardMenu = (props : any) => {
                                     <Link className="btn btn-white btn-md" to="/submit-property"> <i className="fa fa-plus-circle"></i>Add Property </Link>
                                 </div> : props.page === "estates-management" ? 
                                  <div className="ms-auto my-4 mt-sm-0">
-                                    <a className="btn btn-white btn-md" href="/submit-property"> <i className="fa fa-plus-circle"></i>Add Estate </a>
+                                    <Link className="btn btn-white btn-md" to="/submit-estate"> <i className="fa fa-plus-circle"></i>Add Estate </Link>
                                 </div> :  null
                                 }
                                
@@ -37,19 +37,21 @@ const DashboardMenu = (props : any) => {
                                             <i className="far fa-clipboard"></i>Dashboard</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className={props.page === "properties-management" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/properties-management">
-                                            <i className="fa fa-list"></i>Properties Management</Link>
-                                    </li>
-                                    <li className="nav-item">
                                         <Link className={props.page === "estates-management" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/estates-management">
                                             <i className="far fa-edit"></i>Estates Management</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className={props.page === "submit-property" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/submit-property"><i className="fa fa-home"></i>Submit Property</Link>
+                                        <Link className={props.page === "submit-estate" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/submit-estate"><i className="fas fa-plus-square"></i>Add Estate</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link nav-link-inactive" to="/submit-property"><i className="fas fa-plus-square"></i>Add Estate</Link>
+                                        <Link className={props.page === "properties-management" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/properties-management">
+                                            <i className="fa fa-list"></i>Properties Management</Link>
                                     </li>
+                                   
+                                    <li className="nav-item">
+                                        <Link className={props.page === "submit-property" ? "nav-link nav-link-active" : "nav-link nav-link-inactive"} to="/submit-property"><i className="fa fa-home"></i>Submit Property</Link>
+                                    </li>
+                                  
                                     <li className="nav-item">
                                         <Link className="nav-link nav-link-inactive" to="/profile"><i className="fas fa-user"></i>Edit Profile</Link>
                                     </li>

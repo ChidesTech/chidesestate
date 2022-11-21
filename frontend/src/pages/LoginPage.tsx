@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEventHandler, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import Swal from "sweetalert2";
 import {  loginUser } from "../api/UserApi";
 import BreadCrumb from "../components/BreadCrumb";
 import IUserInterface from "../interfaces/IUserInterface"
@@ -25,10 +26,10 @@ export default function LoginPage(){
             try {
                 const {data} = await loginUser(user);
                 if(data.error){
-                    alert(data.error);
+                    setError(data.error);
                 }
                 if(data.success){
-                    alert("Login Successful");
+                    Swal.fire("Done","Login Successful", "success");
                     localStorage.setItem("userInfo", JSON.stringify(data.user));
                     navigate("/");
 
