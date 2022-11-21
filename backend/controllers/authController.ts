@@ -7,7 +7,7 @@ const registerUser = async (req: Request, res: Response) => {
     const existingUser = await User.findOne({ email: req.body.email });
 
     if (existingUser) {
-     res.status(400).json({ error: "This email has already been used." });
+     res.status(500).json({ message: "This email has already been used." });
         return;
     }
 

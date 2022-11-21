@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/public/images/agency
+# /public/images/agency
 /public/images/agent
 /public/images/avatar
 /public/images/blog

@@ -27,15 +27,20 @@ export default function RegisterPage(){
                 setError("Passwords do not match");
                 return;
             }
-            const {data} = await createUser(user);
-            if(data.success){
-               Swal.fire("Done","Registration Successful", "success");
-                navigate("/login");
-
+            try {
+              const {data} = await createUser(user);
+              if(data.success){
+                 Swal.fire("Done","Registration Successful", "success");
+                  navigate("/login");
+  
+              }
+             
+            } catch (error : any) {
+              error.response && error.response.data.message
+              ? setError(error.response.data.message)
+              : setError(error.message);
             }
-            if(data.error){
-                setError(data.error)
-            }
+          
 
     }
 
