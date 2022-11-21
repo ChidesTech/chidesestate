@@ -14,11 +14,11 @@ const DashboardMenu = (props : any) => {
                         <div className="profile-sidebar bg-holder bg-overlay-black-70" style={{backgroundImage: "url(images/banner-01.jpg)"}}>
                             <div className="d-sm-flex align-items-center position-relative">
                                 <div className="profile-avatar">
-                                    <img className="img-fluid  rounded-circle" src="images/agent/04.jpg" alt=""/>
+                                    <img className="img-fluid  rounded-circle" src="/images/profile.png" alt=""/>
                                 </div>
                                 <div className="ms-sm-4">
-                                    <h4 className="text-white">Alice Williams</h4>
-                                    <b className="text-white">alicewilliams@gmail.com</b>
+                                    <h4 className="text-white">{userInfo && userInfo.username }</h4>
+                                    <b className="text-white">{userInfo && userInfo.email}</b>
                                 </div>
                                 {props.page === "properties-management" ?  <div className="ms-auto my-4 mt-sm-0">
                                     <Link className="btn btn-white btn-md" to="/submit-property"> <i className="fa fa-plus-circle"></i>Add Property </Link>

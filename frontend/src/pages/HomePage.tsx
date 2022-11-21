@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import { getProperties } from "../api/PropertyApi";
+import Footer from "../components/Footer";
 import SearchForm from "../components/SearchForm";
 import IPropertyInterface from "../interfaces/IPropertyInterface";
 export default function HomePage() {
@@ -191,6 +192,7 @@ export default function HomePage() {
             </div>
         </section>
         {/* PROPERTY LIST ENDS */}
+        <Footer></Footer>
 
 
     </>

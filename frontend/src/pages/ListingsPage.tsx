@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { searchProperties } from "../api/PropertyApi";
 import BreadCrumb from "../components/BreadCrumb";
+import Footer from "../components/Footer";
 import IPropertyInterface from "../interfaces/IPropertyInterface";
 export default function ListingsPage() {
     const navigate = useNavigate();
@@ -30,12 +31,6 @@ export default function ListingsPage() {
         }
 
     }
-
-
-
-
-
-
 
     useEffect(() => {
         getListing();
@@ -201,7 +196,7 @@ export default function ListingsPage() {
         </section>
         {/* PROPERTY LIST ENDS */}
 
-
+<Footer></Footer>
 
 
     </>

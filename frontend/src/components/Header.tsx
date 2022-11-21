@@ -11,20 +11,20 @@ export default function Header() {
     }
     return <>
         <header className="header">
-            <div className="topbar">
+            <div className="topbar" style={{backgroundColor : "palevioletred" }}>
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12">
                             <div className="d-block d-md-flex align-items-center text-center">
                                 <div className="me-3 d-inline-block">
-                                    <a href="tel:1-800-555-1234"><i className="fa fa-phone me-2 fa fa-flip-horizontal"></i>1-800-555-1234 </a>
+                                    <a href="tel:1-800-555-1234"><i className="fa fa-phone me-2 fa fa-flip-horizontal"></i>+2348141680547 </a>
                                 </div>
-                                <div className="me-auto d-inline-block">
+                                <div className="me-auto d-inline-block" style={{visibility : "hidden"}}>
                                     <span className="me-2 text-white">Get App:</span>
                                     <a className="pe-1" href="#"><i className="fab fa-android"></i></a>
                                     <a href="#"><i className="fab fa-apple"></i></a>
                                 </div>
-                                <div className="dropdown d-inline-block ps-2 ps-md-0">
+                                <div style={{visibility : "hidden"}} className="dropdown d-inline-block ps-2 ps-md-0">
                                     <a className="dropdown-toggle" href="#" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Choose location<i className="fas fa-chevron-down ps-2"></i>
                                     </a>
@@ -44,9 +44,9 @@ export default function Header() {
                                         <li><a href="#"> <i className="fab fa-instagram"></i> </a></li>
                                     </ul>
                                 </div>
-                                <div className="login d-inline-block">
+                                {/* <div  className="login d-inline-block">
                                     <a data-bs-toggle="modal" data-bs-target="#loginModal" href="#">Hello sign in<i className="fa fa-user ps-2"></i></a>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -55,34 +55,29 @@ export default function Header() {
             <nav className="navbar navbar-light bg-white navbar-static-top navbar-expand-lg header-sticky">
                 <div className="container-fluid">
                     <button type="button" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"><i className="fas fa-align-left"></i></button>
-                    <Link className="navbar-brand text-dark" to="/">
+                    <Link className="navbar-brand active text-dark" to="/">
                         {/* <img className="img-fluid" src="images/logo.svg" alt="logo"/> */}
                         ChidesEstates
                     </Link>
                     <div className="navbar-collapse collapse justify-content-center">
                         <ul className="nav navbar-nav">
 
-                            <li className="nav-item dropdown active">
+                            <li className="nav-item dropdown ">
                                 <Link className="nav-link" to="/"  > Home</Link>
                             </li>
                             <li className="dropdown nav-item">
                                 <Link to="/listings" className="nav-link" > Listings </Link>
                             </li>
+                            <li className="dropdown nav-item">
+                                <Link to="/estates" className="nav-link" > Estates </Link>
+                            </li>
+                            
                             <li className="nav-item dropdown">
                                 <Link className="nav-link " to="/about" >
                                     About
-                                </Link>                     
+                                </Link>
                             </li>
-
-
-                            <li className="nav-item dropdown">
-                                <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Estates
-                                </a>
-
-                            </li>
-
-                       {userInfo._id ?  <li className="nav-item dropdown">
+                            {userInfo._id ? <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle text-capitalize" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {userInfo.username} <i className="fas fa-chevron-down fa-xs"></i>
                                 </a>
@@ -100,8 +95,8 @@ export default function Header() {
                                     Login
                                 </Link>
 
-                            </li> }     
-                           
+                            </li>}
+
                         </ul>
                     </div>
                     <div className="add-listing d-none d-sm-block">

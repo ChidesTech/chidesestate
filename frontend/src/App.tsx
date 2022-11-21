@@ -13,6 +13,7 @@ import SubmitEstate from './pages/SubmitEstatePage';
 import SinglePropertyPage from './pages/SinglePropertyPage';
 import DashboardPage from './pages/DashboardPage';
 import ListingsPage from './pages/ListingsPage';
+import EstatesPage from './pages/EstatesPage';
 import EstatesManagementPage from './pages/EstatesManagementPage';
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
     <Route path='/listings' element={<ListingsPage/>}></Route>
     <Route path='/estates-management' element={<EstatesManagementPage/>}></Route>
     <Route path='/profile' element={<EstatesManagementPage/>}></Route>
+    <Route path='/estates' element={<EstatesPage/>}></Route>
    </Routes>
     </BrowserRouter>
   );
