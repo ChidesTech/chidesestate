@@ -85,7 +85,7 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="/dashboard">Dashboard</Link></li>
                                     <li><Link className="dropdown-item" to="/properties-management">My Properties</Link></li>
                                     <li><Link className="dropdown-item" to="/estates-management">My Estates</Link></li>
-                                    <li><a className="dropdown-item" href="agent-list.html">My Profile</a></li>
+                                    <li><Link className="dropdown-item" to="/profile">My Profile</Link></li>
 
                                     <li><a onClick={signOut} className="dropdown-item" >Logout</a></li>
 
@@ -100,7 +100,10 @@ export default function Header() {
                         </ul>
                     </div>
                     <div className="add-listing d-none d-sm-block">
-                        <a className="btn btn-primary btn-md" href="submit-property.html"> <i className="fa fa-user-plus"></i>Register </a>
+                   {userInfo._id ? 
+                        <Link className="btn btn-primary btn-md" to="/submit-property"> Submit Property </Link>:
+                        <Link className="btn btn-primary btn-md" to="/register"> <i className="fa fa-user-plus"></i>Register </Link>
+                   }
                     </div>
                 </div>
             </nav>

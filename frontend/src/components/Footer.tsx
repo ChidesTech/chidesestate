@@ -78,13 +78,13 @@ export default function Footer(){
         <div className="row align-items-center">
           <div className="col-md-4 text-center text-md-start">
             {/* <a href="index-2.html"><img className="img-fluid footer-logo" src="images/logo-light.svg" alt=""/> </a> */}
-            <h3>ChidesEstates</h3>
+            <h3 className="text-white">ChidesEstates</h3>
           </div>
           <div className="col-md-4 text-center my-3 mt-md-0 mb-md-0">
             <a id="back-to-top" className="back-to-top" href="#"><i className="fas fa-angle-double-up"></i> </a>
           </div>
           <div className="col-md-4 text-center text-md-end">
-            <p className="mb-0 text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> Real villa </a> All Rights Reserved </p>
+            <p className="mb-0 text-white"> &copy;Copyright <span id="copyright"> <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script></span> <a href="#"> ChidesEstate </a> All Rights Reserved </p>
           </div>
         </div>
       </div>

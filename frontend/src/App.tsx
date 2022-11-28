@@ -11,13 +11,19 @@ import RegisterPage from './pages/RegisterPage';
 import SubmitPropertyPage from './pages/SubmitPropertyPage';
 import SubmitEstate from './pages/SubmitEstatePage';
 import SinglePropertyPage from './pages/SinglePropertyPage';
+import SingleEstatePage from './pages/SingleEstatePage';
 import DashboardPage from './pages/DashboardPage';
 import ListingsPage from './pages/ListingsPage';
 import EstatesPage from './pages/EstatesPage';
 import EstatesManagementPage from './pages/EstatesManagementPage';
+import PhotoGalleryPage from './pages/PhotoGalleryPage';
+import VideoGalleryPage from './pages/VideoGalleryPage';
+import ProfilePage from './pages/ProfilePage';
+import ScrollToTop from './components/ScrollToTop';
 function App() {
   return (
     <BrowserRouter>
+    <ScrollToTop></ScrollToTop>
     <Header/>
    <Routes>
     <Route path='/' element={<HomePage/>}></Route>
@@ -30,8 +36,11 @@ function App() {
     <Route path='/dashboard' element={<DashboardPage/>}></Route>
     <Route path='/listings' element={<ListingsPage/>}></Route>
     <Route path='/estates-management' element={<EstatesManagementPage/>}></Route>
-    <Route path='/profile' element={<EstatesManagementPage/>}></Route>
+    <Route path='/profile' element={<ProfilePage/>}></Route>
     <Route path='/estates' element={<EstatesPage/>}></Route>
+    <Route path='/estate/:id' element={<SingleEstatePage/>}></Route>
+    <Route path='/photo-gallery/:id' element={<PhotoGalleryPage/>}></Route>
+    <Route path='/video-gallery/:id' element={<VideoGalleryPage/>}></Route>
    </Routes>
     </BrowserRouter>
   );

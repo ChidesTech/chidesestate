@@ -89,7 +89,7 @@ const SubmitPropertyPage: React.FC = () => {
     { imageType === "cover-photo" && setUploadingCoverPhoto(true) };
     { imageType === "photo" && setUploadingPhoto(true) };
     { imageType === "cover-photo" && setUploadedCoverPhoto(false) };
-        { imageType === "photo" && setUploadedPhoto(false) };
+    { imageType === "photo" && setUploadedPhoto(false) };
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", "chidespencils");
@@ -524,7 +524,7 @@ Submit Property --> */}
                           <label className="form-label">Location</label>
                           <input className="form-control" name="location" onChange={handleInputChange} placeholder="Location" />
                         </div>
-                       
+
                       </div>
                     </form>
                   </div>
@@ -549,7 +549,7 @@ Submit Property --> */}
                         {uploadedPhoto && <h2 style={{ fontSize: "1.2rem" }} className="alert alert-success p-2">
                           Done</h2>}
                       </div>
- 
+
 
                       <section className="space-pb mt-4">
                         <div className="container">
@@ -605,41 +605,40 @@ Submit Property --> */}
                         <input name="video" onChange={fileInputChangeHandler} type="file" className="form-control" id="customFile" />
                         <label className="input-group-text" htmlFor="customFile">Choose Video</label>
                       </div>
-                       <section className="space-pb mt-4">
-                       <div className="container">
-                         <div className="row">
-                           {property.images.map((image, i) => {
-                             return <div className="col-md-3 mb-4 mb-lg-2">
-                               <a href="property-grid.html">
-                                 <div className="location-item bg-overlay-gradient bg-holder" style={{
-                                   backgroundImage: `url(${image})`,
-                                   backgroundSize: "contain", backgroundRepeat: "no-repeat"
-                                 }}>
+                      <section className="space-pb mt-4">
+                        <div className="container">
+                          <div className="row">
+                            {property.images.map((image, i) => {
+                              return <div className="col-md-3 mb-4 mb-lg-2">
+                                <a href="property-grid.html">
+                                  <div className="location-item bg-overlay-gradient bg-holder" style={{
+                                    backgroundImage: `url(${image})`,
+                                    backgroundSize: "contain", backgroundRepeat: "no-repeat"
+                                  }}>
 
 
-                                 </div>
-                               </a>
-                             </div>
-                           })}
-
-                           <div className="col-md-3 mb-4 mb-lg-2">
-                            <video src="/videos/video.mp4" controls></video>
-                           </div>
-                           <div className="col-md-3 mb-4 mb-lg-2">
-                            <video src="/videos/video.mp4" controls></video>
-                           </div>
-                           <div className="col-md-3 mb-4 mb-lg-2">
-                            <video src="/videos/video.mp4" controls></video>
-                           </div>
-
-                          
-
-
-                         </div>
-
-                       </div>
-                     </section>
-                     </>
+                                  </div>
+                                </a>
+                              </div>
+                            })}
+                          </div>
+                          <div className="gallery-videos">
+                            <div className="gallery-video">
+                              <video className="" style={{ width: "100%" }} src="/videos/video.mp4" controls></video>
+                            </div>
+                            <div className="gallery-video">
+                              <video className="" style={{ width: "100%" }} src="/videos/video.mp4" controls></video>
+                            </div>
+                            <div className="gallery-video">
+                              <video className="" style={{ width: "100%" }} src="/videos/video.mp4" controls></video>
+                            </div>
+                            <div className="gallery-video">
+                              <video className="" style={{ width: "100%" }} src="/videos/video.mp4" controls></video>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </>
                     }
                     {/* ============= Video Gallery Ends  =============  */}
                   </div>
