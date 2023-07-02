@@ -1,0 +1,137 @@
+.headerSearch{
+    background-color: white;
+    border: 3px solid palevioletred;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 0;
+    border-radius: 5px;  
+    z-index: 6;
+    width: 100%;
+    bottom: -20px;
+    left: 5%;  
+
+}
+
+.headerIcon{
+    color: lightgray;
+}
+
+.headerSearchItem{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+
+.headerSearchInput{
+    border: none;
+    outline: none;
+}
+
+.headerSearchText{
+    color: dark;
+    cursor: pointer;
+    width: 100%;
+}
+
+.date-range-picker{
+    position: absolute;
+    top: 200px;
+    box-shadow: 1px 1px 1px 1px lightgray;
+    border-radius: 10px;
+    z-index: 99;
+
+}
+.date-range-picker-booking-page{
+    top: 190px !important;
+    left: -1rem !important;
+    
+}
+
+
+
+.options{
+    position: absolute;
+    top: 200px;
+    background-color: white;
+    color: grey;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px lightgray;
+
+}
+
+.optionItem{
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 10px;
+}
+
+.optionCounter{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.optionCounterButton{
+    border: 1px solid palevioletred;
+    background-color: white;
+    color: palevioletred;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+}
+
+.optionCounterButton:hover{
+    border: 1px solid white;
+    background-color: palevioletred;
+    color: white;
+}
+
+@media(max-width : 1000px){
+
+    .headerSearch{
+        flex-direction: column;
+        width: 100%;
+        left: 0;
+        gap: 1.2rem;
+        padding: 1rem 1rem;
+        margin-top: 1rem;
+        border: none;
+    }
+    .headerSearchItem{
+        border: 1px solid palevioletred;
+        width: 100%;
+        justify-content: center;
+        padding-left: 10px;
+        justify-content: start;
+        border-radius: 4px;
+        padding: 4px;
+    }
+    .headerSearchItem:last-child{
+        border: none;      
+    }
+
+    .date-range-picker{
+        position: absolute;
+       left: 0;
+       top: 269px;
+       width: 100%;
+    }
+
+    .options{
+        position: absolute;
+        left: 0;
+        top: 269px;
+        width: 100%;
+     }
+
+    .whooping-banner {
+        visibility: hidden;
+    }
+    
+}
