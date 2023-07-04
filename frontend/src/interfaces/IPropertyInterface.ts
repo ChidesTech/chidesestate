@@ -3,7 +3,7 @@ interface IPropertyInterface{
     title : string,
     type : string,
     status: string,
-    location : string,
+    address : string,
     price : number,
     cover : string,
     images : string[],

@@ -21,11 +21,15 @@ import VideoGalleryPage from './pages/VideoGalleryPage';
 import ProfilePage from './pages/ProfilePage';
 import ScrollToTop from './components/ScrollToTop';
 import BookingPage from './pages/BookingPage';
+import IUserInterface from './interfaces/IUserInterface';
+
 function App() {
+  const userInfo : IUserInterface | null = JSON.parse(localStorage.getItem("userInfo")!);
+  
   return (
     <BrowserRouter>
     <ScrollToTop></ScrollToTop>
-    <Header/>
+    <Header userInfo={userInfo}/>
    <Routes>
     <Route path='/' element={<HomePage/>}></Route>
     <Route path='/login' element={<LoginPage/>}></Route>

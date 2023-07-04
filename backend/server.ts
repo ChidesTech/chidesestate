@@ -2,32 +2,31 @@ import "dotenv/config";
 
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
-import passport from "passport";
-import passportLocal from "passport-local";
-import cookieParser from "cookie-parser";
 import session from "express-session";
-import bcrypt from "bcryptjs";
-
-// import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
 import propertyRoutes from "./routes/propertyRoutes";
 import env from "./utils/validateEnv";
 import mongoose from "mongoose";
 import createHttpError, {isHttpError} from "http-errors";
-const port = env.PORT;
+import MongoStore from "connect-mongo";
 
+
+const port = env.PORT;
 const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(session({
-    secret : "mysecret",
-    resave : true,
-    saveUninitialized : true
+    secret : env.SESSION_SECRET,
+    resave : false,
+    saveUninitialized : false,
+    cookie : {
+        maxAge :   60 * 60 * 1000
+    },
+    rolling : true,
+    store : MongoStore.create({
+        mongoUrl : env.MONGODB_URL
+    })
 }));
-app.use(cookieParser());
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 app.use("/api/properties", propertyRoutes);
 app.use("/api/auth", authRoutes);
@@ -56,14 +55,14 @@ app.use((error : unknown, req  : Request, res : Response, next : NextFunction)=>
 })
 
 
-
 mongoose.connect(env.MONGODB_URL)
 .then(() => {
    console.log("MongoDB Connected");
-    startServer()
+   
 }).catch(
-    (error : any)=> console.log(error)
+    (error : any)=> console.log("MongoDB Error : " + error)
 )
+
 
 
 const startServer = () => {
@@ -71,3 +70,6 @@ const startServer = () => {
         console.log("Listening on port 5000")
     });
 }
+
+startServer()
+

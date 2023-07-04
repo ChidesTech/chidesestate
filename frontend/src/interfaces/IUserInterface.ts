@@ -5,9 +5,7 @@ interface IUserInterface{
     password: string,
     confirmPassword? : string,
     isAdmin? : boolean,
-    success? : string,
-    user? : object,
-    error? : string
+    
 } 
 
 export default IUserInterface;

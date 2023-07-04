@@ -26,7 +26,7 @@ const SubmitPropertyPage: React.FC = () => {
   const navigate = useNavigate();
 
   const initialPropertyState = {
-    _id: null, title: "", type: "", status: "", location: "", price: 0, cover: "", images: [], videos: [],
+    _id: null, title: "", type: "", status: "", address: "", price: 0, cover: "", images: [], videos: [],
     description: "", bathrooms: 0, bedrooms: 0, garages: 0, features: [], details: [], period: ""
   }
   const [property, setProperty] = useState<IPropertyInterface>(initialPropertyState);

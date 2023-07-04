@@ -20,6 +20,9 @@ export const updateProperty = (id: any, data: IPropertyInterface) => {
 export const deleteProperty = (id: any) => {
     return http.delete<any>(`/properties/${id}`);
 }
+export const filterProperties = (data : any) => {
+    return http.post<any>(`/properties/filter`, data);
+}
 export const searchProperties = (data : any) => {
     return http.post<any>(`/properties/search`, data);
 }

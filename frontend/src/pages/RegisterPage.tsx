@@ -32,13 +32,9 @@ export default function RegisterPage(){
               if(data.success){
                  Swal.fire("Done","Registration Successful", "success");
                   navigate("/login");
-  
-              }
-             
-            } catch (error : any) {
-              error.response && error.response.data.message
-              ? setError(error.response.data.message)
-              : setError(error.message);
+              }           
+            } catch (error : any) {        
+              setError(error.response.data.error)
             }
           
 

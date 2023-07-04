@@ -1,18 +1,19 @@
 import { ChangeEvent, useEffect, useState } from "react"
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { searchProperties } from "../api/PropertyApi";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { filterProperties } from "../api/PropertyApi";
 import BreadCrumb from "../components/BreadCrumb";
 import Footer from "../components/Footer";
 import IPropertyInterface from "../interfaces/IPropertyInterface";
 export default function ListingsPage() {
     const navigate = useNavigate();
+    const location = useLocation()
     const [params, setParms] = useSearchParams();
-    const [title, setTitle] = useState(() => params.get("title") || "");
-    const [location, setLocation] = useState(() => params.get("location") || "");
-    const [type, setType] = useState(() => params.get("type") || "");
-    const [status, setStatus] = useState(() => params.get("status") || "");
-    const [bedrooms, setBedrooms] = useState(() => Number(params.get("bedrooms")) || 0);
-    const [bathrooms, setBathrooms] = useState(() => Number(params.get("bathrooms")) || 0);
+    const [title, setTitle] = useState(location.state?.title || ""); 
+    const [address , setAddress] = useState(location.state?.address || "")
+    const [type, setType] = useState(location.state?.type || "");
+    const [status, setStatus] = useState(location.state?.status || "");
+    const [bedrooms, setBedrooms] = useState( Number(location.state?.bedrooms) || 0);
+    const [bathrooms, setBathrooms] = useState( Number(location.state?.bathrooms) || 0);
 
 
     const [properties, setProperties] = useState<Array<IPropertyInterface>>([]);
@@ -23,7 +24,7 @@ export default function ListingsPage() {
 
         setLoading(true);
         try {
-            const { data } = await searchProperties({ title, location, type, status, bedrooms, bathrooms });
+            const { data } = await filterProperties({ title, location, type, status, bedrooms, bathrooms });
             setProperties(data);
             setLoading(false);
         } catch (error) {
@@ -34,9 +35,9 @@ export default function ListingsPage() {
 
     useEffect(() => {
         getListing();
-    }, [title, location, type, status, bedrooms, bathrooms]);
+    }, [title, address, type, status, bedrooms, bathrooms]);
     return <>
-        <BreadCrumb page={`SEARCH : Status = ${status}, Location = ${location}, Type = ${type}, Bedrooms = ${bedrooms}, Bathrooms = ${bathrooms}, Min. Price = , Max. Price = `} />
+        <BreadCrumb page={`FILTER OPTIONS : Status = ${status}, Location = ${address}, Type = ${type}, Bedrooms = ${bedrooms}, Bathrooms = ${bathrooms}, Min. Price = , Max. Price = `} />
 
         {/* SEARCH FORM STARTS */}
         <div className="property-search-field bg-white p-2">
@@ -68,7 +69,7 @@ export default function ListingsPage() {
                         <div className="form-group-search">
                             <label className="form-label">Location</label>
                             <div className="d-flex align-items-center"><i className="far fa-compass me-1"></i>
-                                <input onChange={e => setLocation(e.target.value)} name="location" className="form-control search-form-select" type="search" placeholder="Search Location" /></div>
+                                <input onChange={e => setAddress(e.target.value)} name="location" className="form-control search-form-select" type="search" placeholder="Search Location" /></div>
                         </div>
                         <span className="align-items-center ms-3 d-none d-lg-block"><button className="btn btn-primary d-flex align-items-center" type="submit"><i className="fas fa-search me-1"></i><span>Search</span></button></span>
                     </div>
@@ -167,7 +168,7 @@ export default function ListingsPage() {
                                     <div className="property-details">
                                         <div className="property-details-inner">
                                             <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
-                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.address}</span>
                                             <span className="property-agent-date"><i className="far fa-clock fa-md"></i>3 years ago</span>
                                             <div className="property-price">${property.price}{property.period && <span> / {property.period}</span>} </div>
                                             <ul className="property-info list-unstyled d-flex">

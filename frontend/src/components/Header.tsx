@@ -1,14 +1,19 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import Swal from "sweetalert2";
+import IUserInterface from "../interfaces/IUserInterface";
 
-export default function Header() {
-    const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+export default function Header({userInfo} : any) {
     const navigate = useNavigate()
     function signOut() {
         localStorage.removeItem("userInfo");
         Swal.fire("Done", "Logout Successful", "success")
         navigate("/");
     }
+
+    
+
+    
     return <>
         <header className="header">
             <div className="topbar" style={{backgroundColor : "palevioletred" }}>
@@ -80,7 +85,7 @@ export default function Header() {
                                     About
                                 </Link>
                             </li>
-                            {userInfo._id ? <li className="nav-item dropdown">
+                            {userInfo ? <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle text-capitalize" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {userInfo.username} <i className="fas fa-chevron-down fa-xs"></i>
                                 </a>
@@ -90,7 +95,7 @@ export default function Header() {
                                     <li><Link className="dropdown-item" to="/estates-management">My Estates</Link></li>
                                     <li><Link className="dropdown-item" to="/profile">My Profile</Link></li>
 
-                                    <li><a onClick={signOut} className="dropdown-item" >Logout</a></li>
+                                    <li><a href="/" onClick={signOut} className="dropdown-item" >Logout</a></li>
 
                                 </ul>
                             </li> : <li className="nav-item dropdown">
@@ -103,7 +108,7 @@ export default function Header() {
                         </ul>
                     </div>
                     <div className="add-listing d-none d-sm-block">
-                   {userInfo._id ? 
+                   {userInfo? 
                         <Link className="btn btn-primary btn-md" to="/submit-property"> Submit Property </Link>:
                         <Link className="btn btn-primary btn-md" to="/register"> <i className="fa fa-user-plus"></i>Register </Link>
                    }

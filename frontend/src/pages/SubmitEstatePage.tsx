@@ -21,7 +21,7 @@ const SubmitEstatePage: React.FC = () => {
   const navigate = useNavigate();
 
   const initialPropertyState = {
-    _id: null, title: "", type: "", status: "", location: "", price: 0, cover: "", images: [], videos: [],
+    _id: null, title: "", type: "", status: "", address: "", price: 0, cover: "", images: [], videos: [],
     description: "", bathrooms: 0, bedrooms: 0, garages: 0, features: [], details: [], period: ""
   }
   const [property, setProperty] = useState<IPropertyInterface>(initialPropertyState);
@@ -150,7 +150,7 @@ const SubmitEstatePage: React.FC = () => {
               <p className="property-title">{property.title || "Title"}</p>
               <div className="apartment-address">
                 <i className="material-icons">place</i>
-                <span className="address">{property.location || "Location"}</span>
+                <span className="address">{property.address || "Location"}</span>
               </div>
 
               <div className="apartment-image">

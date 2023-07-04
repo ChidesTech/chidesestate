@@ -7,7 +7,7 @@ export default function SearchForm() {
 
 
     const initialPropertyState = {
-        _id: null, title: "", type: "", status: "", location: "", price: 0, cover: "", images: [], videos: [],
+        _id: null, title: "", type: "", status: "", address: "", price: 0, cover: "", images: [], videos: [],
         description: "", bathrooms: 0, bedrooms: 0, garages: 0, features: [], details: [], period: ""
     }
     const [property, setProperty] = useState<IPropertyInterface>(initialPropertyState);
@@ -27,7 +27,9 @@ export default function SearchForm() {
 
 
     const searchProperties = () => {
-        navigate(`/listings?search=true${property.title && `&title=${property.title}`}${property.type && `&type=${property.type}`}${property.status && `&status=${property.status}`}${property.location && `&location=${property.location}`}${`&bedrooms=${property.bedrooms}`}${`&bathrooms=${property.bathrooms}`}`);
+        // navigate(`/listings?search=true${property.title && `&title=${property.title}`}${property.type && `&type=${property.type}`}${property.status && `&status=${property.status}`}${property.location && `&location=${property.location}`}${`&bedrooms=${property.bedrooms}`}${`&bathrooms=${property.bathrooms}`}`);
+        navigate("/listings", {state : {title : property.title, type : property.type, status : property.status, 
+            location : property.address , bathrooms : property.bathrooms, bedrooms : property.bedrooms }})
         // window.location.reload();
     }
 

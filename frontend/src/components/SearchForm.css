@@ -84,6 +84,9 @@
     border-radius: 6px;
     width: 30px;
     height: 30px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .optionCounterButton:hover{
@@ -119,17 +122,28 @@
     .date-range-picker{
         position: absolute;
        left: 0;
-       top: 269px;
+       top: 285px;
        width: 100%;
+       z-index: 999 !important;
     }
 
     .options{
         position: absolute;
         left: 0;
-        top: 269px;
+        top: 285px;
         width: 100%;
      }
 
+     .optionItem{
+       
+        width: 60%;
+        margin-left: 20%;
+       
+    
+    }
+    .optionCounter{
+        gap: 20px;
+    }
     .whooping-banner {
         visibility: hidden;
     }

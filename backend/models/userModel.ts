@@ -1,17 +1,21 @@
-var mongoose  = require("mongoose");
+import mongoose from "mongoose";
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   email : {
     type : String,
-    required : true
+    required : true,
+    unique : true,
+    // select : false
   },
   username : {
     type : String,
-    required : true
+    required : true,
+    unique : true
   },
   password : {
     type : String,
-    required : true
+    required : true,
+    // select : false
   },
   isAdmin : {
     type: Boolean,
@@ -19,7 +23,8 @@ const userSchema = mongoose.Schema({
   }
 }, {timestamps : true});
 
+type UserType = mongoose.InferSchemaType<typeof userSchema>;
 
-const User = mongoose.model("User", userSchema)
+const User = mongoose.model<UserType>("User", userSchema)
 
-module.exports = User;
+export default User;

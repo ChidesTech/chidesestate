@@ -1,19 +1,22 @@
 import { faBed, faCalendarDays, faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import "./SearchForm.css";
 import { DateRange } from "react-date-range";
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import { data } from "../data";
 
 export default function SearchForm() {
+    const navigate = useNavigate()
     interface OptionsInterface {
         adults: number,
         children?: number,
         rooms: number
     }
-    const [destination, setDestination] = useState<string>()
+    const [city, setCity] = useState<string>()
     const [openDatePicker, setOpenDatePicker] = useState(false);
     const [openOptions, setOpenOptions] = useState(false);
     const [options, setOptions] = useState<any>({
@@ -38,19 +41,49 @@ export default function SearchForm() {
                             options[option] - 1
             }
         })
+    };
+
+    const searchHandler: MouseEventHandler<HTMLDivElement> = () => {
+        navigate('/booking', { state: { city, ...options } })
     }
 
 
     return <>
         <div className="headerSearch">
             <div className="headerSearchItem">
-                <FontAwesomeIcon icon={faBed} className="headerIcon" />
-                <input
-                    type="text"
-                    placeholder="Where are you going?"
-                    className="headerSearchInput"
-                    onChange={(e) => setDestination(e.target.value)}
-                />
+                <div className="mb-2 select-border">
+                    <select className="form-control basic-select ">
+                        <option>--- Country ---</option>
+                        <option>All</option>
+                        {data.states.map(state => {
+                            return <option>{state}</option>
+
+                        })}
+
+                    </select>
+                </div>
+                <div className="mb-2 select-border">
+                    <select className="form-control basic-select ">
+                        <option>--- State ---</option>
+                        <option>All</option>
+                        {data.states.map(state => {
+                            return <option>{state}</option>
+
+                        })}
+
+                    </select>
+                </div>
+                <div className="mb-2 select-border">
+                    <select className="form-control basic-select ">
+                        <option>--- City ---</option>
+                        <option>All</option>
+                        {data.states.map(state => {
+                            return <option>{state}</option>
+
+                        })}
+
+                    </select>
+                </div>
             </div>
             <div className="headerSearchItem">
                 <FontAwesomeIcon onClick={() => { setOpenDatePicker(!openDatePicker); setOpenOptions(false) }} icon={faCalendarDays} className="headerIcon" />
@@ -71,37 +104,37 @@ export default function SearchForm() {
                     <div className="optionItem">
                         <span className="optionText">Adult</span>
                         <div className="optionCounter">
-                            <button onClick={() => changeOptions("adults", "-")} className="optionCounterButton">-</button>
+                            <button onClick={() => changeOptions("adults", "-")} className="optionCounterButton"><i className="fa fa-minus"></i></button>
                             <span className="optionCounterNumber">{options.adults}</span>
-                            <button onClick={() => changeOptions("adults", "+")} className="optionCounterButton">+</button>
+                            <button onClick={() => changeOptions("adults", "+")} className="optionCounterButton"><i className="fa fa-plus"></i></button>
                         </div>
                     </div>
                     <div className="optionItem">
                         <span className="optionText">Children</span>
                         <div className="optionCounter">
-                            <button onClick={() => changeOptions("children", "-")} className="optionCounterButton">-</button>
+                            <button onClick={() => changeOptions("children", "-")} className="optionCounterButton text-center"><i className="fa fa-minus"></i></button>
                             <span className="optionCounterNumber">{options.children}</span>
-                            <button onClick={() => changeOptions("children", "+")} className="optionCounterButton">+</button>
+                            <button onClick={() => changeOptions("children", "+")} className="optionCounterButton"><i className="fa fa-plus"></i></button>
                         </div>
 
                     </div>
                     <div className="optionItem">
                         <span className="optionText">Room</span>
                         <div className="optionCounter">
-                            <button onClick={() => changeOptions("rooms", "-")} className="optionCounterButton">-</button>
+                            <button onClick={() => changeOptions("rooms", "-")} className="optionCounterButton"><i className="fa fa-minus"></i></button>
                             <span className="optionCounterNumber">{options.rooms}</span>
-                            <button onClick={() => changeOptions("rooms", "+")} className="optionCounterButton">+</button>
+                            <button onClick={() => changeOptions("rooms", "+")} className="optionCounterButton"><i className="fa fa-plus"></i></button>
                         </div>
                     </div>
                     <div className="d-flex justify-content-center mb-3">
-                    <button onClick={() => { setOpenOptions(false); }} className="btn btn-sm btn-primary text-center">OK</button>
+                        <button onClick={() => { setOpenOptions(false); }} className="btn btn-sm btn-primary text-center">OK</button>
 
                     </div>
                 </div>
                 }
 
             </div>
-            <div className="headerSearchItem">
+            <div onClick={searchHandler} className="headerSearchItem">
                 <button className="btn btn-primary w-100"> <i className="fa fa-search"></i> Search</button>
 
             </div>

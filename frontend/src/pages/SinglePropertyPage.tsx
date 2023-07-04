@@ -11,7 +11,7 @@ import IPropertyInterface from "../interfaces/IPropertyInterface";
 export default function SinglePropertyPage() {
   const { id } = useParams();
   const initialPropertyState = {
-    _id: null, title: "", type: "", status: "", location: "", price: 0, cover: "", images: [], videos: [], description: "", bathrooms: 0,
+    _id: null, title: "", type: "", status: "", address: "", price: 0, cover: "", images: [], videos: [], description: "", bathrooms: 0,
     bedrooms: 0, garages: 0, features: [], details: [], period: ""
   }
 
@@ -76,7 +76,7 @@ export default function SinglePropertyPage() {
             <div className="col-lg-10 col-md-6">
               <div className="property-detail-title">
                 <h3>{property.title}</h3>
-                <span className="d-block mb-4"><i className="fas fa-map-marker-alt fa-xs pe-2"></i>{property.location}</span>
+                <span className="d-block mb-4"><i className="fas fa-map-marker-alt fa-xs pe-2"></i>{property.address}</span>
                 <div className="d-inline">
                   <span className="price font-xll text-primary me-2 fs-4">${property.price}</span>
                   <span className="sub-price font-lg text-dark"><b>{property.period && `/${property.period}`} </b> </span>

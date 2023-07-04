@@ -25,25 +25,14 @@ export default function LoginPage(){
             e.preventDefault();
             try {
                 const {data} = await loginUser(user);
-                if(data.error){
-                    setError(data.error);
-                }
-                if(data.success){
                     Swal.fire("Done","Login Successful", "success");
-                    localStorage.setItem("userInfo", JSON.stringify(data.user));
+                    localStorage.setItem("userInfo", JSON.stringify(data));
                     navigate("/");
-
-                   
-
+                    window.location.reload();
                 }
-            } catch (error : any) {
-                error.response && error.response.data.message
-                ? setError(error.response.data.message)
-                : setError(error.message);
+             catch (error : any) {
+                setError(error.response.data.error)
             }
-           
-            
-
     }
     
 

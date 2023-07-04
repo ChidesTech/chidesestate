@@ -1,55 +1,76 @@
-import { Request, Response } from "express";
-const User = require("../models/userModel");
+import { Request, Response, RequestHandler } from "express";
+import createHttpError from "http-errors";
+import User from "../models/userModel";
+
 const bcrypt = require("bcryptjs");
 
+interface RegisterBody {
+    username?: string,
+    email?: string,
+    password?: string
+}
+const registerUser: RequestHandler<unknown, unknown, RegisterBody, unknown> = async (req, res, next) => {
+    const { email, username, password } = req.body;
+    try {
+        if (!username || !email || !password) throw createHttpError(400, "Missing Fields")
+        const existingUser = await User.findOne({ email: req.body.email });
 
-const registerUser = async (req: Request, res: Response) => {
-    const existingUser = await User.findOne({ email: req.body.email });
+        if (existingUser) throw createHttpError(409, "The email has already been used")
 
-    if (existingUser) {
-     res.status(500).json({ message: "This email has already been used." });
-        return;
+        const user = await User.create({
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password, 10)
+        });
+        res.status(201).json({ success: "User successfully registered", user });
+    } catch (error) {
+     next(error)
     }
 
-    const newUser = new User({
-        email: req.body.email,
-        username: req.body.username,
-        password: bcrypt.hashSync(req.body.password, 10)
-    });
-
-    const user = await newUser.save();
-
-
-    if (user) {
-        res.status(200).json({ success: "User successfully registered"});
-    }
 }
 
 
+interface LoginBody {
+    email?: string,
+    password?: string
+}
+
+const loginUser : RequestHandler<unknown, unknown, LoginBody, unknown> = async (req, res, next) => {
+    const {email, password} = req.body;
+    try {
+        if(!email || !password) throw createHttpError(400, "Missing Login Credentials")    
+        let user = await User.findOne({ email: email }).select("+email +username");
+    if (!user) throw createHttpError(401, "Invalid Credentials");
+    if (!bcrypt.compareSync(req.body.password, user.password)) throw createHttpError(401, "Invalid Credential")    
+    req.session.userId = user._id;
+    res.status(201).json(user);
+    } catch (error) {
+        next(error)
+    }   
+
+}
 
 
-
-const loginUser = async (req: Request, res: Response) => {
+const getAuthenticatedUser : RequestHandler = async(req, res, next) => {
+    const authenticatedUserId = req.session.userId;
     
-    let existingUser = await User.findOne({ email: req.body.email });
-    if (!existingUser) {
-        res.status(500).send({ message: "User does not exist" });
-        return;
+    try {
+        if(!authenticatedUserId) throw createHttpError(401, "User not authenticated")
+        const user = await User.findById(authenticatedUserId).select("+email").exec();
+        res.status(200).json(user)
+    } catch (error) {
+        next(error);
     }
-    if (!bcrypt.compareSync(req.body.password, existingUser.password)) {
-        res.status(500).send({ message: "Incorrect Password" });
-        return;
-    }
-
-    let user = {
-        _id: existingUser._id,
-        email: existingUser.email,
-        username: existingUser.username,     
-        isAdmin: existingUser.isAdmin,
-       
-    }
-    res.status(200).send({user : user, success : "Login Successful"});
-
 }
 
-module.exports = { registerUser, loginUser }
+const logoutUser : RequestHandler = async(req, res, next) => {
+    req.session.destroy(error => {
+        if(error){
+            next(error);
+        }else{
+        res.status(200);
+        }
+       
+    })
+} 
+
+module.exports = { registerUser, loginUser, logoutUser , getAuthenticatedUser}

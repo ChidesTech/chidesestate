@@ -294,6 +294,11 @@ a{
     color: lightgray;
     cursor: pointer;
   }
+  .propertyImageWrapper{
+    width: 45%;
+   
+  
+  }
   
 }
 @media(max-width : 450px){

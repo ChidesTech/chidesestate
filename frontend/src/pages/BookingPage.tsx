@@ -3,10 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { DateRange } from "react-date-range";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { format } from "date-fns";
-import { deleteProperty, getProperties } from "../api/PropertyApi";
+import { deleteProperty, getProperties, searchProperties } from "../api/PropertyApi";
 import BreadCrumb from "../components/BreadCrumb";
 import DashboardMenu from "../components/DashboardMenu";
 import IPropertyInterface from "../interfaces/IPropertyInterface";
@@ -14,30 +14,35 @@ import { data } from "../data";
 
 
 export default function BookingPage() {
+    const location = useLocation()
     const [properties, setProperties] = useState<Array<IPropertyInterface>>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
-    const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+    const userInfo = JSON.parse(localStorage.getItem("userInfo")!);
     const [openDatePicker, setOpenDatePicker] = useState(false);
-    const [date, setDate] = useState<any>([
+    const [date, setDate] = useState<any>(location.state?.date ||[
         {
             startDate: new Date(),
             endDate: new Date(),
             key: 'selection'
         }
     ]);
+    const [city, setCity] = useState<string>(location.state?.city|| "");
+    const [adults, setAdults] = useState<number>(Number(location.state?.adults) || 1);
+    const [children, setChildren] = useState<number>(Number(location.state?.children) || 0);
+    const [rooms, setRooms] = useState<number>(Number(location.state?.rooms) || 1);
+    const [min , setMin] = useState<number>()
+    const [max , setMax] = useState<number>()
 
 
     async function getMyProperties() {
         setLoading(true);
         try {
-            const { data } = await getProperties();
+            const { data } = await searchProperties({city, adults, children, rooms, min , max});
             setProperties(data);
             setLoading(false)
         } catch (error: any) {
-            error.response && error.response.data.message
-                ? setError(error.response.data.message)
-                : setError(error.message);
+            setError(error.response.data.error)
         }
 
     }
@@ -68,7 +73,8 @@ export default function BookingPage() {
         getMyProperties();
     }, [])
     return <>
-        <BreadCrumb page="Properties Management" />
+                <BreadCrumb page={`SEARCH OPTIONS : City = ${city}, Date = ${format(date[0].startDate, "dd/MM/yyyy")} to ${format(date[0].endDate, "dd/MM/yyyy")}, Adults = ${adults}, Children = ${children}, Rooms = ${rooms}, Min. Price = , Max. Price = `} />
+
         <section className="space-ptb" style={{ marginTop: "-4rem" }}>
             <div className="container">
                 <div className="row">
@@ -97,19 +103,19 @@ export default function BookingPage() {
                                 <div className="collapse show" id="filter-property">
                                     <form className="mt-3">
                                         <div className="mb-2 select-border" style={{ position: "relative" }}>
-                                        <div className="mb-2 select-border">
-                                            <select className="form-control basic-select ">
-                                                <option>--- State ---</option>
-                                                <option>All</option>
-                                                {data.states.map(state => {
-                                                    return <option>{state}</option>
+                                            <div className="mb-2 select-border">
+                                                <select className="form-control basic-select ">
+                                                    <option>--- State ---</option>
+                                                    <option>All</option>
+                                                    {data.states.map(state => {
+                                                        return <option>{state}</option>
 
-                                                })}
+                                                    })}
 
-                                            </select>
+                                                </select>
                                             </div>
                                             <select className="form-control basic-select " >
-                                                <option>--- Local Government ---</option>
+                                                <option>--- City ---</option>
                                                 <option>All</option>
                                                 {data.states.map(state => {
                                                     return <option>{state}</option>
@@ -246,7 +252,7 @@ export default function BookingPage() {
                                                     <div className="property-details-inner-box">
                                                         <div className="property-details-inner-box-left">
                                                             <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
-                                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.address}</span>
                                                             <span className="property-agent-date"><i className="far fa-clock fa-md"></i>{format(new Date(property.createdAt), "dd/MM/yyyy")}</span>
                                                         </div>
                                                         <div className="property-price">${property.price}<span className="d-block"> {property.period && `${property.period}/ month`}</span> </div>

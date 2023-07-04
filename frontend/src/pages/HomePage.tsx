@@ -19,7 +19,7 @@ export default function HomePage() {
             setProperties(data);
             setLoading(false)
         } catch (error) {
-
+           
         }
     }
 
@@ -337,7 +337,7 @@ export default function HomePage() {
                                     <div className="property-details">
                                         <div className="property-details-inner">
                                             <h5 className="property-title"><Link to={`/property/${property._id}`}>{property.title}</Link></h5>
-                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                            <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.address}</span>
                                             <span className="property-agent-date"><i className="far fa-clock fa-md"></i>3 years ago</span>
                                             <div className="property-price">${property.price}{property.period && <span> / {property.period}</span>} </div>
                                             <ul className="property-info list-unstyled d-flex">

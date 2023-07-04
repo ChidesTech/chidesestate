@@ -1,7 +1,7 @@
- 
-var mongoose  = require("mongoose");
+import mongoose from "mongoose";
 
-const propertySchema = mongoose.Schema({
+
+const propertySchema = new mongoose.Schema({
   title : {
     type : String,
   },
@@ -11,11 +11,22 @@ const propertySchema = mongoose.Schema({
   status : {
     type : String,
   },
-  location : {
+  address : {
     type: String,
+  },
+  state : {
+   type : String
+  },
+  city : {
+    type : String
   },
   price : {
     type: Number,
+  },
+  rating : {
+    type : Number,
+    min : 0,
+    max : 5
   },
   period : {
     type: String,
@@ -46,10 +57,14 @@ const propertySchema = mongoose.Schema({
   },
  details: {
     type: Array,
+  },
+  featured : {
+    type : Boolean,
+    default : false
   }
 }, {timestamps : true});
 
+type PropertyType = mongoose.InferSchemaType<typeof propertySchema>;
+const Property = mongoose.model<PropertyType>("Property", propertySchema);
 
-const Property = mongoose.model("Property", propertySchema)
-
-module.exports = Property;
+export default Property;

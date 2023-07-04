@@ -270,7 +270,7 @@ export default function PropertiesManagementPage() {
                                             <div className="property-details-inner-box">
                                                 <div className="property-details-inner-box-left">
                                                     <h5 className="property-title"><a href="property-detail-style-01.html">{property.title}</a></h5>
-                                                    <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.location}</span>
+                                                    <span className="property-address"><i className="fas fa-map-marker-alt fa-xs"></i>{property.address}</span>
                                                     <span className="property-agent-date"><i className="far fa-clock fa-md"></i>{format(property.createdAt)}</span>
                                                 </div>
                                                 <div className="property-price">${property.price}<span className="d-block"> {property.period && `${property.period}/ month`}</span> </div>

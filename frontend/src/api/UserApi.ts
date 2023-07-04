@@ -8,5 +8,11 @@ export const createUser = (data: IUserInterface) => {
 export const loginUser = ( data: IUserInterface) => {
     return http.post<IUserInterface>(`/auth/login`, data);
 }
+export const getAuthenticatedUser = ( ) => {
+    return http.get(`/auth`);
+}
+export const logoutUser = ( ) => {
+    return http.post(`/auth/logout`);
+}
 
 
